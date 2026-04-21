@@ -1,0 +1,1486 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vet Klinika – Profesionali pagalba jūsų augintiniams</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet" />
+  <style>
+    /* ── RESET & VARIABLES ────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --cream:      #faf6f0;
+      --warm-white: #fffdf9;
+      --beige:      #f0e8d8;
+      --beige-mid:  #e4d5be;
+      --beige-dark: #c9b89a;
+      --sage:       #7a9e7e;
+      --sage-light: #a8c5ab;
+      --sage-deep:  #4e7452;
+      --brown:      #7c5c3a;
+      --brown-dark: #4a3520;
+      --rose:       #d4a5a0;
+      --rose-light: #f0d5d2;
+      --gold:       #c9a96e;
+      --gold-light: #e8d4b0;
+      --text-dark:  #2c2018;
+      --text-mid:   #5a4535;
+      --text-light: #8a7060;
+      --shadow-sm:  0 2px 12px rgba(100,70,40,.08);
+      --shadow-md:  0 8px 32px rgba(100,70,40,.12);
+      --shadow-lg:  0 20px 60px rgba(100,70,40,.16);
+      --shadow-xl:  0 30px 80px rgba(100,70,40,.22);
+      --radius-sm:  12px;
+      --radius-md:  20px;
+      --radius-lg:  32px;
+      --radius-xl:  48px;
+      --font-head:  'Cormorant Garamond', Georgia, serif;
+      --font-body:  'DM Sans', system-ui, sans-serif;
+      --transition: cubic-bezier(.22,.61,.36,1);
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      background: var(--cream);
+      color: var(--text-dark);
+      overflow-x: hidden;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    /* ── CURSOR ───────────────────────────────────────────────── */
+    .cursor-dot {
+      width: 8px; height: 8px;
+      background: var(--sage);
+      border-radius: 50%;
+      position: fixed; top: 0; left: 0;
+      pointer-events: none; z-index: 9999;
+      transform: translate(-50%,-50%);
+      transition: transform .1s, width .3s var(--transition), height .3s var(--transition), background .3s;
+    }
+    .cursor-ring {
+      width: 36px; height: 36px;
+      border: 1.5px solid var(--sage-light);
+      border-radius: 50%;
+      position: fixed; top: 0; left: 0;
+      pointer-events: none; z-index: 9998;
+      transform: translate(-50%,-50%);
+      transition: transform .18s var(--transition), width .4s var(--transition), height .4s var(--transition), border-color .3s;
+    }
+    body.hovering .cursor-dot { width: 14px; height: 14px; background: var(--gold); }
+    body.hovering .cursor-ring { width: 52px; height: 52px; border-color: var(--gold); opacity: .6; }
+
+    /* ── SCROLL ANIMATIONS ────────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(36px);
+      transition: opacity .8s var(--transition), transform .8s var(--transition);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: .1s; }
+    .reveal-delay-2 { transition-delay: .2s; }
+    .reveal-delay-3 { transition-delay: .3s; }
+    .reveal-delay-4 { transition-delay: .4s; }
+
+    /* ── NAVIGATION ───────────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      padding: 18px 40px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(250,246,240,.82);
+      backdrop-filter: blur(20px) saturate(1.5);
+      -webkit-backdrop-filter: blur(20px) saturate(1.5);
+      border-bottom: 1px solid rgba(201,184,154,.25);
+      transition: padding .4s var(--transition), box-shadow .4s;
+    }
+    nav.scrolled { padding: 12px 40px; box-shadow: var(--shadow-md); }
+    .nav-logo {
+      font-family: var(--font-head);
+      font-size: 1.65rem; font-weight: 600;
+      color: var(--brown-dark);
+      letter-spacing: -.01em;
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none;
+    }
+    .nav-logo-icon {
+      width: 36px; height: 36px;
+      background: linear-gradient(135deg, var(--sage), var(--sage-deep));
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+    }
+    .nav-links {
+      display: flex; align-items: center; gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: .875rem; font-weight: 500;
+      color: var(--text-mid);
+      text-decoration: none; letter-spacing: .02em;
+      position: relative; padding-bottom: 2px;
+      transition: color .3s;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: 0; left: 0;
+      width: 0; height: 1.5px;
+      background: var(--sage);
+      transition: width .35s var(--transition);
+    }
+    .nav-links a:hover { color: var(--sage-deep); }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-cta {
+      background: linear-gradient(135deg, var(--sage), var(--sage-deep));
+      color: #fff !important;
+      padding: 10px 22px !important;
+      border-radius: 40px;
+      font-weight: 600 !important;
+      transition: transform .25s var(--transition), box-shadow .25s !important;
+      white-space: nowrap;
+    }
+    .nav-cta::after { display: none !important; }
+    .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(78,116,82,.35) !important; color: #fff !important; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+    .hamburger span { width: 24px; height: 2px; background: var(--brown); border-radius: 2px; transition: .3s; }
+
+    /* ── HERO ─────────────────────────────────────────────────── */
+    #hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      position: relative; overflow: hidden;
+      padding: 120px 40px 80px;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background: linear-gradient(145deg, var(--warm-white) 0%, var(--cream) 40%, #eee3d0 100%);
+    }
+    /* Floating organic blobs */
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(60px);
+      animation: float 8s ease-in-out infinite;
+      pointer-events: none;
+    }
+    .blob-1 {
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(168,197,171,.35) 0%, transparent 70%);
+      top: -150px; right: -100px;
+      animation-duration: 9s;
+    }
+    .blob-2 {
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(201,169,110,.25) 0%, transparent 70%);
+      bottom: -100px; left: -50px;
+      animation-duration: 11s; animation-delay: -3s;
+    }
+    .blob-3 {
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(212,165,160,.2) 0%, transparent 70%);
+      top: 40%; right: 30%;
+      animation-duration: 13s; animation-delay: -6s;
+    }
+    @keyframes float {
+      0%, 100% { transform: translate(0,0) scale(1); }
+      33%       { transform: translate(20px,-30px) scale(1.05); }
+      66%       { transform: translate(-15px,20px) scale(.97); }
+    }
+    /* Decorative dots grid */
+    .dots-grid {
+      position: absolute;
+      top: 100px; left: 40px;
+      width: 200px; height: 200px;
+      background-image: radial-gradient(circle, var(--beige-dark) 1px, transparent 1px);
+      background-size: 22px 22px;
+      opacity: .45;
+      animation: float 14s ease-in-out infinite alternate;
+    }
+    .hero-inner {
+      position: relative; z-index: 1;
+      max-width: 1200px; margin: 0 auto; width: 100%;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(168,197,171,.2);
+      border: 1px solid rgba(122,158,126,.35);
+      color: var(--sage-deep);
+      font-size: .78rem; font-weight: 600;
+      letter-spacing: .1em; text-transform: uppercase;
+      padding: 7px 16px; border-radius: 40px;
+      margin-bottom: 24px;
+      backdrop-filter: blur(8px);
+    }
+    .hero-badge::before { content: '●'; font-size: .5rem; animation: blink 2s ease-in-out infinite; }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
+    .hero-title {
+      font-family: var(--font-head);
+      font-size: clamp(3.2rem, 6vw, 5.2rem);
+      font-weight: 500; line-height: 1.1;
+      color: var(--brown-dark);
+      letter-spacing: -.02em;
+      margin-bottom: 20px;
+    }
+    .hero-title em {
+      font-style: italic;
+      color: var(--sage-deep);
+      position: relative;
+    }
+    .hero-title em::after {
+      content: '';
+      position: absolute; bottom: 4px; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--sage-light), transparent);
+      border-radius: 2px;
+    }
+    .hero-sub {
+      font-size: 1.15rem;
+      color: var(--text-mid);
+      font-weight: 300;
+      line-height: 1.7;
+      margin-bottom: 16px;
+      max-width: 480px;
+    }
+    .hero-highlight {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: linear-gradient(135deg, rgba(201,169,110,.18), rgba(201,169,110,.08));
+      border: 1px solid rgba(201,169,110,.4);
+      padding: 12px 20px; border-radius: var(--radius-sm);
+      margin-bottom: 40px;
+      font-size: .925rem; color: var(--brown);
+      font-weight: 500;
+    }
+    .hero-highlight .star { color: var(--gold); }
+    .hero-actions { display: flex; flex-direction: column; gap: 14px; align-items: flex-start; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 12px;
+      background: linear-gradient(135deg, var(--sage) 0%, var(--sage-deep) 100%);
+      color: #fff;
+      font-family: var(--font-body);
+      font-size: 1.05rem; font-weight: 600;
+      padding: 18px 36px; border-radius: 60px;
+      border: none; cursor: pointer;
+      text-decoration: none;
+      position: relative; overflow: hidden;
+      transition: transform .3s var(--transition), box-shadow .3s;
+      box-shadow: 0 8px 32px rgba(78,116,82,.35);
+    }
+    .btn-primary::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,.15), transparent);
+      opacity: 0; transition: opacity .3s;
+    }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 16px 48px rgba(78,116,82,.45); }
+    .btn-primary:hover::before { opacity: 1; }
+    .btn-primary:active { transform: translateY(0); }
+    /* Ripple */
+    .btn-primary .ripple {
+      position: absolute; border-radius: 50%;
+      transform: scale(0);
+      background: rgba(255,255,255,.3);
+      animation: ripple-anim .7s linear;
+    }
+    @keyframes ripple-anim { to { transform: scale(4); opacity: 0; } }
+    .btn-phone-icon {
+      width: 36px; height: 36px;
+      background: rgba(255,255,255,.2);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: transparent;
+      color: var(--brown);
+      font-family: var(--font-body);
+      font-size: .95rem; font-weight: 500;
+      padding: 14px 24px; border-radius: 60px;
+      border: 1.5px solid var(--beige-dark);
+      cursor: pointer; text-decoration: none;
+      transition: all .3s var(--transition);
+    }
+    .btn-secondary:hover {
+      background: var(--beige);
+      border-color: var(--sage-light);
+      color: var(--sage-deep);
+      transform: translateY(-2px);
+    }
+    .hero-visual {
+      position: relative;
+      display: flex; align-items: center; justify-content: center;
+    }
+    /* Big illustration card */
+    .hero-card {
+      width: 100%; max-width: 480px;
+      background: rgba(255,253,249,.7);
+      border: 1px solid rgba(201,184,154,.3);
+      border-radius: var(--radius-xl);
+      padding: 40px;
+      backdrop-filter: blur(20px);
+      box-shadow: var(--shadow-xl), inset 0 1px 0 rgba(255,255,255,.8);
+      position: relative;
+      animation: card-float 6s ease-in-out infinite;
+    }
+    @keyframes card-float {
+      0%,100% { transform: translateY(0) rotate(0deg); }
+      50%      { transform: translateY(-12px) rotate(.5deg); }
+    }
+    .hero-illus {
+      font-size: 5.5rem; text-align: center;
+      margin-bottom: 24px;
+      animation: pet-bounce 3s ease-in-out infinite;
+    }
+    @keyframes pet-bounce {
+      0%,100% { transform: scale(1) rotate(0deg); }
+      50%      { transform: scale(1.06) rotate(-3deg); }
+    }
+    .hero-card-stats {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .stat-box {
+      background: rgba(122,158,126,.1);
+      border: 1px solid rgba(122,158,126,.2);
+      border-radius: var(--radius-sm);
+      padding: 16px;
+      text-align: center;
+    }
+    .stat-num {
+      font-family: var(--font-head);
+      font-size: 2rem; font-weight: 600;
+      color: var(--sage-deep);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: .75rem; color: var(--text-light);
+      margin-top: 4px; font-weight: 500;
+      text-transform: uppercase; letter-spacing: .05em;
+    }
+    .hero-card-badge {
+      position: absolute; top: -14px; right: 28px;
+      background: linear-gradient(135deg, var(--gold), #b8883e);
+      color: #fff; font-size: .72rem; font-weight: 700;
+      padding: 6px 16px; border-radius: 20px;
+      letter-spacing: .08em; text-transform: uppercase;
+      box-shadow: 0 4px 16px rgba(201,169,110,.45);
+    }
+    /* Floating mini tags */
+    .float-tag {
+      position: absolute;
+      background: rgba(255,253,249,.9);
+      border: 1px solid rgba(201,184,154,.4);
+      border-radius: 40px;
+      padding: 8px 16px;
+      font-size: .8rem; font-weight: 600;
+      color: var(--text-mid);
+      backdrop-filter: blur(12px);
+      box-shadow: var(--shadow-sm);
+      white-space: nowrap;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .float-tag-1 { top: 20px; left: -30px; animation: float-tag 7s ease-in-out infinite; }
+    .float-tag-2 { bottom: 60px; left: -40px; animation: float-tag 9s ease-in-out infinite; animation-delay: -2s; }
+    .float-tag-3 { bottom: 20px; right: -20px; animation: float-tag 8s ease-in-out infinite; animation-delay: -4s; }
+    @keyframes float-tag {
+      0%,100% { transform: translateY(0); }
+      50%      { transform: translateY(-8px); }
+    }
+
+    /* ── SECTION SHARED ───────────────────────────────────────── */
+    section { padding: 96px 40px; }
+    .container { max-width: 1200px; margin: 0 auto; }
+    .section-label {
+      font-size: .72rem; font-weight: 700;
+      letter-spacing: .18em; text-transform: uppercase;
+      color: var(--sage);
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 12px;
+    }
+    .section-label::before {
+      content: '';
+      width: 28px; height: 2px;
+      background: linear-gradient(90deg, var(--sage), transparent);
+      flex-shrink: 0;
+    }
+    .section-title {
+      font-family: var(--font-head);
+      font-size: clamp(2.2rem, 4vw, 3.4rem);
+      font-weight: 500; line-height: 1.15;
+      color: var(--brown-dark);
+      letter-spacing: -.01em;
+      margin-bottom: 20px;
+    }
+    .section-desc {
+      font-size: 1.05rem;
+      color: var(--text-light);
+      max-width: 560px;
+      line-height: 1.75; font-weight: 300;
+    }
+    .divider {
+      width: 60px; height: 3px;
+      background: linear-gradient(90deg, var(--sage-light), transparent);
+      border-radius: 2px;
+      margin: 20px 0;
+    }
+
+    /* ── ABOUT SECTION ────────────────────────────────────────── */
+    #about {
+      background: var(--warm-white);
+      position: relative; overflow: hidden;
+    }
+    #about::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c9b89a' fill-opacity='0.08'%3E%3Ccircle cx='30' cy='30' r='1.5'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; align-items: center;
+      position: relative; z-index: 1;
+    }
+    .about-visual {
+      position: relative;
+    }
+    .about-img-wrap {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      background: linear-gradient(145deg, var(--sage-light), var(--sage));
+      height: 480px;
+      box-shadow: var(--shadow-xl);
+    }
+    .about-img-inner {
+      width: 100%; height: 100%;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 12px; padding: 40px;
+      text-align: center;
+    }
+    .about-big-icon { font-size: 6rem; filter: drop-shadow(0 8px 16px rgba(0,0,0,.15)); }
+    .about-img-text {
+      font-family: var(--font-head);
+      font-size: 1.8rem; color: rgba(255,255,255,.9);
+      font-style: italic;
+      line-height: 1.3;
+    }
+    .about-img-sub { font-size: .85rem; color: rgba(255,255,255,.7); font-weight: 400; }
+    /* Decorative offset box */
+    .about-offset-box {
+      position: absolute;
+      bottom: -24px; right: -24px;
+      background: var(--warm-white);
+      border: 1px solid var(--beige-mid);
+      border-radius: var(--radius-md);
+      padding: 24px 28px;
+      box-shadow: var(--shadow-lg);
+      min-width: 200px;
+    }
+    .about-offset-box .num {
+      font-family: var(--font-head);
+      font-size: 3rem; font-weight: 600;
+      color: var(--sage-deep); line-height: 1;
+    }
+    .about-offset-box .lbl { font-size: .8rem; color: var(--text-light); font-weight: 500; }
+    /* Info cards */
+    .info-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 36px; }
+    .info-card {
+      background: var(--cream);
+      border: 1px solid var(--beige-mid);
+      border-radius: var(--radius-md);
+      padding: 22px 20px;
+      display: flex; align-items: flex-start; gap: 14px;
+      transition: transform .3s var(--transition), box-shadow .3s;
+    }
+    .info-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    .info-card-icon {
+      width: 44px; height: 44px; flex-shrink: 0;
+      background: linear-gradient(135deg, rgba(122,158,126,.15), rgba(122,158,126,.08));
+      border: 1px solid rgba(122,158,126,.25);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.25rem;
+    }
+    .info-card-title { font-weight: 600; font-size: .9rem; color: var(--brown-dark); margin-bottom: 4px; }
+    .info-card-text { font-size: .8rem; color: var(--text-light); line-height: 1.5; }
+
+    /* ── SERVICES ─────────────────────────────────────────────── */
+    #services { background: var(--cream); }
+    .services-header {
+      display: flex; justify-content: space-between; align-items: flex-end;
+      margin-bottom: 56px; gap: 24px; flex-wrap: wrap;
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 24px;
+    }
+    .service-card {
+      background: var(--warm-white);
+      border: 1px solid rgba(201,184,154,.3);
+      border-radius: var(--radius-lg);
+      padding: 36px 28px;
+      position: relative; overflow: hidden;
+      cursor: default;
+      transition: transform .4s var(--transition), box-shadow .4s, border-color .3s;
+      group: true;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(145deg, rgba(122,158,126,.06) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity .4s;
+    }
+    .service-card:hover { transform: translateY(-8px) scale(1.01); box-shadow: var(--shadow-xl); border-color: rgba(122,158,126,.35); }
+    .service-card:hover::before { opacity: 1; }
+    .service-icon-wrap {
+      width: 64px; height: 64px;
+      border-radius: var(--radius-sm);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2rem; margin-bottom: 20px;
+      position: relative; overflow: hidden;
+      transition: transform .4s var(--transition);
+    }
+    .service-card:hover .service-icon-wrap { transform: scale(1.08) rotate(-3deg); }
+    .ic-green  { background: linear-gradient(135deg, rgba(122,158,126,.2), rgba(78,116,82,.1)); }
+    .ic-gold   { background: linear-gradient(135deg, rgba(201,169,110,.2), rgba(180,140,70,.1)); }
+    .ic-rose   { background: linear-gradient(135deg, rgba(212,165,160,.25), rgba(180,130,125,.12)); }
+    .ic-blue   { background: linear-gradient(135deg, rgba(140,180,200,.2), rgba(100,150,180,.1)); }
+    .ic-purple { background: linear-gradient(135deg, rgba(160,140,200,.2), rgba(130,110,180,.1)); }
+    .ic-brown  { background: linear-gradient(135deg, rgba(124,92,58,.15), rgba(100,70,40,.08)); }
+    .service-name {
+      font-family: var(--font-head);
+      font-size: 1.4rem; font-weight: 500;
+      color: var(--brown-dark); margin-bottom: 10px;
+    }
+    .service-desc { font-size: .875rem; color: var(--text-light); line-height: 1.65; }
+    .service-arrow {
+      position: absolute; bottom: 28px; right: 28px;
+      width: 36px; height: 36px;
+      background: var(--sage);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: #fff; font-size: .9rem;
+      opacity: 0; transform: translateX(10px);
+      transition: opacity .3s, transform .35s var(--transition);
+    }
+    .service-card:hover .service-arrow { opacity: 1; transform: translateX(0); }
+    /* Wide card */
+    .service-card-wide {
+      grid-column: span 2;
+      display: flex; align-items: center; gap: 36px;
+    }
+    .service-card-wide .service-icon-wrap { width: 80px; height: 80px; font-size: 2.5rem; flex-shrink: 0; }
+    .service-card-wide .service-content { flex: 1; }
+
+    /* ── TEAM ─────────────────────────────────────────────────── */
+    #team {
+      background: linear-gradient(180deg, var(--warm-white) 0%, var(--cream) 100%);
+      position: relative;
+    }
+    #team::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--beige-mid), transparent);
+    }
+    .team-header { text-align: center; margin-bottom: 60px; }
+    .team-header .section-label { justify-content: center; }
+    .team-header .section-label::before { display: none; }
+    .team-header .section-label::after {
+      content: '';
+      width: 28px; height: 2px;
+      background: linear-gradient(270deg, var(--sage), transparent);
+    }
+    .team-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 32px; max-width: 900px; margin: 0 auto;
+    }
+    .team-card {
+      background: var(--warm-white);
+      border: 1px solid rgba(201,184,154,.35);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      transition: transform .4s var(--transition), box-shadow .4s;
+      position: relative;
+    }
+    .team-card:hover { transform: translateY(-10px); box-shadow: var(--shadow-xl); }
+    .team-card-top {
+      padding: 48px 32px 32px;
+      background: linear-gradient(160deg, rgba(168,197,171,.15) 0%, rgba(250,246,240,0) 60%);
+      display: flex; flex-direction: column; align-items: center; text-align: center;
+      position: relative;
+    }
+    /* Avatar illustration */
+    .team-avatar {
+      width: 130px; height: 130px;
+      border-radius: 50%;
+      margin-bottom: 20px;
+      position: relative;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 4rem;
+      flex-shrink: 0;
+    }
+    .team-avatar-bg {
+      position: absolute; inset: 0;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--sage-light), var(--sage));
+      box-shadow: 0 8px 32px rgba(122,158,126,.35);
+    }
+    .team-avatar-bg-2 {
+      background: linear-gradient(135deg, var(--rose-light), var(--rose));
+      box-shadow: 0 8px 32px rgba(212,165,160,.35);
+    }
+    .team-avatar span { position: relative; z-index: 1; }
+    /* Paw halo ring */
+    .team-avatar::before {
+      content: '';
+      position: absolute; inset: -4px;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      background: linear-gradient(white,white) padding-box,
+                  linear-gradient(135deg, var(--sage-light), var(--gold-light)) border-box;
+      transition: transform .5s var(--transition);
+    }
+    .team-card:hover .team-avatar::before { transform: rotate(90deg); }
+    .team-name {
+      font-family: var(--font-head);
+      font-size: 1.65rem; font-weight: 500;
+      color: var(--brown-dark); margin-bottom: 6px;
+    }
+    .team-role-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, rgba(201,169,110,.18), rgba(201,169,110,.08));
+      border: 1px solid rgba(201,169,110,.4);
+      color: var(--brown);
+      font-size: .72rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; padding: 5px 14px;
+      border-radius: 20px; margin-bottom: 16px;
+    }
+    .team-card-body { padding: 0 32px 32px; }
+    .team-specialties {
+      display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;
+      margin-bottom: 20px; padding-top: 0;
+    }
+    .specialty-tag {
+      background: rgba(122,158,126,.1);
+      border: 1px solid rgba(122,158,126,.25);
+      color: var(--sage-deep);
+      font-size: .74rem; font-weight: 600;
+      padding: 5px 12px; border-radius: 20px;
+      transition: background .25s, transform .25s;
+    }
+    .specialty-tag:hover { background: rgba(122,158,126,.2); transform: scale(1.04); }
+    .team-card-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--beige-mid), transparent);
+      margin: 20px 0;
+    }
+    .team-cta {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      background: linear-gradient(135deg, var(--sage), var(--sage-deep));
+      color: #fff; font-weight: 600; font-size: .9rem;
+      padding: 14px 28px; border-radius: 40px; width: 100%;
+      border: none; cursor: pointer;
+      text-decoration: none;
+      transition: transform .3s var(--transition), box-shadow .3s;
+      box-shadow: 0 4px 20px rgba(78,116,82,.3);
+    }
+    .team-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(78,116,82,.45); }
+    /* Decorative paw print */
+    .paw-decor {
+      position: absolute; top: 16px; right: 20px;
+      font-size: 1.5rem; opacity: .15;
+      transform: rotate(15deg);
+    }
+
+    /* ── TRUST STRIP ──────────────────────────────────────────── */
+    #trust {
+      padding: 48px 40px;
+      background: linear-gradient(135deg, var(--sage-deep), #3a5c3e);
+      position: relative; overflow: hidden;
+    }
+    #trust::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 5 L35 35 L5 35 Z' fill='%23ffffff' fill-opacity='0.03'/%3E%3C/svg%3E") repeat;
+    }
+    .trust-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 32px; flex-wrap: wrap;
+      position: relative; z-index: 1;
+    }
+    .trust-text h3 {
+      font-family: var(--font-head);
+      font-size: 2rem; color: #fff;
+      font-style: italic; margin-bottom: 6px;
+    }
+    .trust-text p { color: rgba(255,255,255,.7); font-size: .9rem; }
+    .trust-btn {
+      display: inline-flex; align-items: center; gap: 12px;
+      background: rgba(255,255,255,.15);
+      border: 1.5px solid rgba(255,255,255,.35);
+      color: #fff;
+      font-family: var(--font-body);
+      font-size: 1.05rem; font-weight: 600;
+      padding: 16px 32px; border-radius: 60px;
+      cursor: pointer; text-decoration: none;
+      backdrop-filter: blur(8px);
+      transition: all .3s var(--transition);
+      white-space: nowrap;
+    }
+    .trust-btn:hover {
+      background: rgba(255,255,255,.25);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(0,0,0,.15);
+    }
+    .trust-stats {
+      display: flex; gap: 40px; flex-wrap: wrap;
+    }
+    .trust-stat { text-align: center; }
+    .trust-stat-num {
+      font-family: var(--font-head);
+      font-size: 2.2rem; font-weight: 600;
+      color: #fff; line-height: 1;
+    }
+    .trust-stat-lbl { font-size: .75rem; color: rgba(255,255,255,.6); text-transform: uppercase; letter-spacing: .08em; }
+
+    /* ── CONTACT ──────────────────────────────────────────────── */
+    #contact { background: var(--cream); }
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 60px; align-items: start;
+    }
+    .contact-info h2 {
+      font-family: var(--font-head);
+      font-size: 3rem; font-weight: 500;
+      color: var(--brown-dark); margin-bottom: 16px;
+      line-height: 1.15;
+    }
+    .contact-info p { color: var(--text-light); font-size: 1rem; margin-bottom: 40px; line-height: 1.7; }
+    .contact-card {
+      background: var(--warm-white);
+      border: 1px solid rgba(201,184,154,.4);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      margin-bottom: 20px;
+      box-shadow: var(--shadow-sm);
+    }
+    .contact-item {
+      display: flex; align-items: center; gap: 16px;
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(201,184,154,.25);
+    }
+    .contact-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .contact-item:first-child { padding-top: 0; }
+    .contact-icon {
+      width: 48px; height: 48px; flex-shrink: 0;
+      background: linear-gradient(135deg, var(--sage-light), var(--sage));
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem;
+      box-shadow: 0 4px 12px rgba(122,158,126,.25);
+    }
+    .contact-label { font-size: .75rem; color: var(--text-light); font-weight: 600; letter-spacing: .06em; text-transform: uppercase; margin-bottom: 2px; }
+    .contact-value { font-size: 1.05rem; color: var(--brown-dark); font-weight: 600; }
+    /* Big call button */
+    .big-call-btn {
+      display: flex; align-items: center; justify-content: space-between;
+      background: linear-gradient(135deg, var(--sage), var(--sage-deep));
+      color: #fff; border-radius: var(--radius-lg);
+      padding: 28px 32px;
+      text-decoration: none;
+      box-shadow: 0 12px 40px rgba(78,116,82,.4);
+      transition: transform .3s var(--transition), box-shadow .3s;
+      position: relative; overflow: hidden;
+    }
+    .big-call-btn::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,.1), transparent);
+    }
+    .big-call-btn:hover { transform: translateY(-4px); box-shadow: 0 20px 56px rgba(78,116,82,.5); }
+    .big-call-left h3 { font-family: var(--font-head); font-size: 1.3rem; font-weight: 500; margin-bottom: 2px; }
+    .big-call-left p { font-size: .85rem; opacity: .75; }
+    .big-call-phone {
+      font-family: var(--font-head);
+      font-size: 1.6rem; font-weight: 600;
+      letter-spacing: -.01em;
+    }
+    /* Map */
+    .map-wrap {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-xl);
+      position: relative;
+    }
+    .map-placeholder {
+      width: 100%; height: 420px;
+      background: linear-gradient(145deg, rgba(122,158,126,.15), rgba(168,197,171,.1));
+      border: 2px dashed rgba(122,158,126,.3);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 16px;
+      color: var(--text-light);
+      font-size: 2.5rem;
+    }
+    .map-placeholder p { font-size: .9rem; color: var(--sage-deep); font-weight: 500; }
+    /* Embed a real iframe map */
+    .map-embed {
+      width: 100%; height: 420px; border: none;
+      display: block;
+    }
+    .map-overlay-badge {
+      position: absolute; top: 20px; left: 20px;
+      background: rgba(255,253,249,.92);
+      border: 1px solid rgba(201,184,154,.4);
+      border-radius: var(--radius-sm);
+      padding: 12px 18px;
+      backdrop-filter: blur(12px);
+      box-shadow: var(--shadow-sm);
+      display: flex; align-items: center; gap: 10px;
+    }
+    .map-pin-dot { width: 12px; height: 12px; background: var(--sage); border-radius: 50%; animation: blink 2s infinite; }
+    .map-name { font-size: .85rem; font-weight: 600; color: var(--brown-dark); }
+
+    /* ── FOOTER ───────────────────────────────────────────────── */
+    footer {
+      background: var(--brown-dark);
+      color: rgba(255,255,255,.7);
+      padding: 56px 40px 32px;
+    }
+    .footer-top {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 2fr 1fr 1fr;
+      gap: 60px; margin-bottom: 48px;
+    }
+    .footer-brand .nav-logo { color: rgba(255,255,255,.9); font-size: 1.5rem; text-decoration: none; }
+    .footer-brand p {
+      margin-top: 14px; font-size: .875rem;
+      color: rgba(255,255,255,.5); line-height: 1.7; max-width: 300px;
+    }
+    .footer-col h4 { color: rgba(255,255,255,.9); font-size: .85rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 18px; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 10px; }
+    .footer-col a { color: rgba(255,255,255,.5); text-decoration: none; font-size: .875rem; transition: color .25s; }
+    .footer-col a:hover { color: rgba(255,255,255,.9); }
+    .footer-bottom {
+      max-width: 1200px; margin: 0 auto;
+      padding-top: 32px;
+      border-top: 1px solid rgba(255,255,255,.1);
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 16px;
+      font-size: .8rem;
+    }
+    .footer-bottom p { color: rgba(255,255,255,.35); }
+    .footer-heart { color: var(--rose); }
+
+    /* ── MOBILE MENU ──────────────────────────────────────────── */
+    .mobile-menu {
+      position: fixed; inset: 0; z-index: 999;
+      background: rgba(250,246,240,.97);
+      backdrop-filter: blur(20px);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 32px;
+      transform: translateX(-100%);
+      transition: transform .4s var(--transition);
+    }
+    .mobile-menu.open { transform: translateX(0); }
+    .mobile-menu a {
+      font-family: var(--font-head);
+      font-size: 2.2rem; font-weight: 400;
+      color: var(--brown-dark); text-decoration: none;
+      transition: color .25s;
+    }
+    .mobile-menu a:hover { color: var(--sage-deep); }
+    .mobile-close {
+      position: absolute; top: 20px; right: 20px;
+      font-size: 1.8rem; cursor: pointer;
+      color: var(--text-mid);
+      background: none; border: none;
+      padding: 8px;
+    }
+
+    /* ── SCROLL TO TOP ────────────────────────────────────────── */
+    .scroll-top {
+      position: fixed; bottom: 32px; right: 32px; z-index: 100;
+      width: 52px; height: 52px;
+      background: linear-gradient(135deg, var(--sage), var(--sage-deep));
+      border: none; border-radius: 50%;
+      color: #fff; font-size: 1.2rem;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; box-shadow: var(--shadow-md);
+      opacity: 0; transform: translateY(20px);
+      transition: opacity .35s, transform .35s var(--transition);
+    }
+    .scroll-top.visible { opacity: 1; transform: translateY(0); }
+    .scroll-top:hover { transform: translateY(-3px); }
+
+    /* ── MEDIA QUERIES ────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      nav { padding: 14px 20px; }
+      nav.scrolled { padding: 10px 20px; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      section { padding: 72px 20px; }
+      .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+      .hero-visual { display: none; }
+      .hero-title { font-size: 2.8rem; }
+      .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .about-img-wrap { height: 300px; }
+      .about-offset-box { display: none; }
+      .info-cards { grid-template-columns: 1fr; }
+      .service-card-wide { grid-column: span 1; flex-direction: column; }
+      .services-grid { grid-template-columns: 1fr; }
+      .team-grid { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .trust-inner { flex-direction: column; align-items: flex-start; }
+      .footer-top { grid-template-columns: 1fr; gap: 32px; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+      .hero-actions { width: 100%; }
+      .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
+      #hero { padding: 100px 20px 60px; }
+    }
+    @media (max-width: 480px) {
+      .hero-title { font-size: 2.2rem; }
+      .section-title { font-size: 1.9rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- CURSOR -->
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" id="mobileClose" aria-label="Uždaryti">✕</button>
+  <a href="#about" onclick="closeMobile()">Apie mus</a>
+  <a href="#services" onclick="closeMobile()">Paslaugos</a>
+  <a href="#team" onclick="closeMobile()">Komanda</a>
+  <a href="#contact" onclick="closeMobile()">Kontaktai</a>
+  <a href="tel:+37060798800" class="btn-primary" style="font-family:var(--font-body);font-size:1rem;padding:16px 28px;border-radius:60px;">📞 Skambinti dabar</a>
+</div>
+
+<!-- NAVIGATION -->
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">
+    <div class="nav-logo-icon">🐾</div>
+    Vet Klinika
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">Apie mus</a></li>
+    <li><a href="#services">Paslaugos</a></li>
+    <li><a href="#team">Komanda</a></li>
+    <li><a href="#contact">Kontaktai</a></li>
+    <li><a href="tel:+37060798800" class="nav-cta">📞 Skambinti</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger" aria-label="Meniu" role="button" tabindex="0">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- ═══════════════ HERO ═══════════════ -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+  <div class="dots-grid"></div>
+
+  <div class="hero-inner">
+    <!-- LEFT -->
+    <div class="hero-content">
+      <div class="hero-badge reveal">✦ Veterinarijos klinika Vilniuje</div>
+      <h1 class="hero-title reveal reveal-delay-1">
+        Vet <em>Klinika</em>
+      </h1>
+      <p class="hero-sub reveal reveal-delay-2">
+        Profesionali pagalba jūsų augintiniams — rūpestingai, greitai ir su meile.
+      </p>
+      <div class="hero-highlight reveal reveal-delay-2">
+        <span class="star">✦</span>
+        Nemokama konsultacija telefonu
+        <span class="star">✦</span>
+      </div>
+      <div class="hero-actions reveal reveal-delay-3">
+        <a href="tel:+37060798800" class="btn-primary" id="mainCallBtn">
+          <div class="btn-phone-icon">📞</div>
+          Skambinti dabar: +370 607 98800
+        </a>
+        <a href="#about" class="btn-secondary">
+          Sužinoti daugiau →
+        </a>
+      </div>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="hero-visual reveal reveal-delay-2">
+      <div class="hero-card">
+        <div class="hero-card-badge">Premium Klinika</div>
+        <div class="hero-illus">🐕</div>
+        <div class="hero-card-stats">
+          <div class="stat-box">
+            <div class="stat-num">10+</div>
+            <div class="stat-label">Metų patirties</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">2</div>
+            <div class="stat-label">Specialistai</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">100%</div>
+            <div class="stat-label">Rūpestis</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">🌿</div>
+            <div class="stat-label">Nemokama konsult.</div>
+          </div>
+        </div>
+        <!-- Floating tags -->
+        <div class="float-tag float-tag-1">🕐 8:30 – 18:00</div>
+        <div class="float-tag float-tag-2">💉 Vakcinacija</div>
+        <div class="float-tag float-tag-3">❤️ Rūpestingi gyd.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ ABOUT ═══════════════ -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-visual reveal">
+        <div class="about-img-wrap">
+          <div class="about-img-inner">
+            <div class="about-big-icon">🏥</div>
+            <div class="about-img-text">Jūsų augintinių sveikata — mūsų prioritetas</div>
+            <div class="about-img-sub">Modernia įranga aprūpinta klinika</div>
+          </div>
+        </div>
+        <div class="about-offset-box">
+          <div class="num">🐾</div>
+          <div class="lbl" style="margin-top:6px;">Rūpinamės kiekvienu augintiniu</div>
+        </div>
+      </div>
+
+      <div class="about-text">
+        <div class="section-label reveal">Apie mus</div>
+        <h2 class="section-title reveal reveal-delay-1">Greita pagalba<br>su širdimi</h2>
+        <div class="divider reveal reveal-delay-1"></div>
+        <p class="section-desc reveal reveal-delay-2">
+          Vet Klinika — tai moderni veterinarijos klinika, kurioje dirbantys profesionalai
+          su šiluma ir ekspertize rūpinasi jūsų augintinių sveikata. Mes tikime, kad kiekvienas
+          gyvūnas nusipelno geriausios priežiūros.
+        </p>
+
+        <div class="info-cards">
+          <div class="info-card reveal reveal-delay-1">
+            <div class="info-card-icon">🕐</div>
+            <div>
+              <div class="info-card-title">Darbo laikas</div>
+              <div class="info-card-text">8:30 – 18:00<br>darbo dienomis</div>
+            </div>
+          </div>
+          <div class="info-card reveal reveal-delay-2">
+            <div class="info-card-icon">⚡</div>
+            <div>
+              <div class="info-card-title">Greita pagalba</div>
+              <div class="info-card-text">Reaguojame operatyviai ir rūpestingai</div>
+            </div>
+          </div>
+          <div class="info-card reveal reveal-delay-3">
+            <div class="info-card-icon">💚</div>
+            <div>
+              <div class="info-card-title">Rūpestingi gydytojai</div>
+              <div class="info-card-text">Mylime gyvūnus kaip savo</div>
+            </div>
+          </div>
+          <div class="info-card reveal reveal-delay-4">
+            <div class="info-card-icon">📞</div>
+            <div>
+              <div class="info-card-title">Nemokama konsultacija</div>
+              <div class="info-card-text">Paskambinkite bet kada darbo valandomis</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ SERVICES ═══════════════ -->
+<section id="services">
+  <div class="container">
+    <div class="services-header">
+      <div>
+        <div class="section-label reveal">Paslaugos</div>
+        <h2 class="section-title reveal reveal-delay-1">Ką mes siūlome<br>jūsų augintiniui</h2>
+      </div>
+      <a href="tel:+37060798800" class="btn-secondary reveal reveal-delay-1" style="flex-shrink:0;">
+        📞 Klauskite telefonu
+      </a>
+    </div>
+
+    <div class="services-grid">
+      <!-- Wide featured card -->
+      <div class="service-card service-card-wide reveal">
+        <div class="service-icon-wrap ic-green" style="width:80px;height:80px;font-size:2.5rem;">💉</div>
+        <div class="service-content">
+          <div class="service-name">Vakcinacija</div>
+          <div class="service-desc">
+            Kompleksinė augintinių vakcinacija nuo pavojingų ligų. Naudojame tik kokybiškus, sertifikuotus vakcinų preparatus. Individuali vakcinacijos programa kiekvienam gyvūnui pagal amžių, sveikatos būklę ir gyvenimo sąlygas.
+          </div>
+        </div>
+        <div class="service-arrow">→</div>
+      </div>
+
+      <div class="service-card reveal">
+        <div class="service-icon-wrap ic-gold">🔬</div>
+        <div class="service-name">Terapija</div>
+        <div class="service-desc">Vidaus ligų diagnostika ir gydymas. Kompleksinis augintinio sveikatos įvertinimas ir individuali gydymo programa.</div>
+        <div class="service-arrow">→</div>
+      </div>
+
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-icon-wrap ic-rose">🫀</div>
+        <div class="service-name">Kardiologija</div>
+        <div class="service-desc">Širdies ligų diagnostika ir gydymas. EKG, ultragarso tyrimai ir individualus kardiologinis gydymas.</div>
+        <div class="service-arrow">→</div>
+      </div>
+
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-icon-wrap ic-blue">🔭</div>
+        <div class="service-name">Oftalmologija</div>
+        <div class="service-desc">Akių ligų diagnostika, gydymas ir chirurginės intervencijos. Specializuota akių priežiūra augintiniams.</div>
+        <div class="service-arrow">→</div>
+      </div>
+
+      <div class="service-card reveal">
+        <div class="service-icon-wrap ic-purple">🏥</div>
+        <div class="service-name">Chirurgija</div>
+        <div class="service-desc">Planinės ir skubios chirurginės operacijos modernia įranga. Saugi anestezija ir kruopštus pooperacinis stebėjimas.</div>
+        <div class="service-arrow">→</div>
+      </div>
+
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-icon-wrap ic-brown">🩺</div>
+        <div class="service-name">Profilaktinis tikrinimas</div>
+        <div class="service-desc">Kasmetiniai profilaktiniai patikrinimai padeda anksti aptikti ligas. Pilnas sveikatos įvertinimas ir rekomendacijos.</div>
+        <div class="service-arrow">→</div>
+      </div>
+
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-icon-wrap ic-green">💊</div>
+        <div class="service-name">Laboratoriniai tyrimai</div>
+        <div class="service-desc">Kraujo, šlapimo ir kitų biologinių medžiagų tyrimai. Greiti rezultatai ir tikslus tyrimo interpretavimas.</div>
+        <div class="service-arrow">→</div>
+      </div>
+
+      <div class="service-card reveal reveal-delay-3">
+        <div class="service-icon-wrap ic-gold">🦷</div>
+        <div class="service-name">Stomatologija</div>
+        <div class="service-desc">Dantų valymas, gydymas ir traukimas. Burnos sveikatos priežiūra augintiniams – svarbi bendros sveikatos dalis.</div>
+        <div class="service-arrow">→</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ TRUST STRIP ═══════════════ -->
+<div id="trust">
+  <div class="trust-inner">
+    <div class="trust-text reveal">
+      <h3>Nemokama konsultacija telefonu</h3>
+      <p>Paskambinkite dabar ir gaukite profesionalų patarėją</p>
+    </div>
+    <div class="trust-stats reveal reveal-delay-1">
+      <div class="trust-stat">
+        <div class="trust-stat-num">8:30</div>
+        <div class="trust-stat-lbl">Nuo</div>
+      </div>
+      <div class="trust-stat">
+        <div class="trust-stat-num">18:00</div>
+        <div class="trust-stat-lbl">Iki</div>
+      </div>
+      <div class="trust-stat">
+        <div class="trust-stat-num">5d.</div>
+        <div class="trust-stat-lbl">Per savaitę</div>
+      </div>
+    </div>
+    <a href="tel:+37060798800" class="trust-btn reveal reveal-delay-2">
+      📞 +370 607 98800
+    </a>
+  </div>
+</div>
+
+<!-- ═══════════════ TEAM ═══════════════ -->
+<section id="team">
+  <div class="container">
+    <div class="team-header">
+      <div class="section-label reveal">Komanda</div>
+      <h2 class="section-title reveal reveal-delay-1">Veterinarijos gydytojų<br><em style="font-family:var(--font-head);font-style:italic;color:var(--sage-deep);">komanda</em></h2>
+      <div class="divider reveal reveal-delay-1" style="margin:16px auto;"></div>
+      <p class="section-desc reveal reveal-delay-2" style="margin:0 auto;text-align:center;">
+        Mūsų gydytojai yra ne tik profesionalai — tai žmonės, kurie iš tiesų myli gyvūnus ir savo darbą.
+      </p>
+    </div>
+
+    <div class="team-grid">
+      <!-- Doctor 1 -->
+      <div class="team-card reveal">
+        <div class="team-card-top">
+          <div class="paw-decor">🐾</div>
+          <div class="team-avatar">
+            <div class="team-avatar-bg"></div>
+            <span>👩‍⚕️</span>
+          </div>
+          <div class="team-name">Natalja Komarovskaja</div>
+          <div class="team-role-badge">✦ Klinikos vadovė</div>
+          <div class="team-specialties">
+            <span class="specialty-tag">Terapeutė</span>
+            <span class="specialty-tag">Oftalmologė</span>
+            <span class="specialty-tag">Chirurgė</span>
+          </div>
+        </div>
+        <div class="team-card-body">
+          <div class="team-card-divider"></div>
+          <p style="font-size:.875rem;color:var(--text-light);line-height:1.7;margin-bottom:20px;">
+            Natalja – Vet Klinikos įkūrėja ir vadovė. Jos specializacijos apima vidaus ligų terapiją,
+            akių chirurgiją ir bendruosius chirurginius įsikišimus. Su šiluma ir profesionalumu
+            rūpinasi kiekvienu augintinio vizitu.
+          </p>
+          <a href="tel:+37060798800" class="team-cta">
+            📞 Konsultuotis
+          </a>
+        </div>
+      </div>
+
+      <!-- Doctor 2 -->
+      <div class="team-card reveal reveal-delay-1">
+        <div class="team-card-top">
+          <div class="paw-decor">🐱</div>
+          <div class="team-avatar">
+            <div class="team-avatar-bg team-avatar-bg-2"></div>
+            <span>👩‍⚕️</span>
+          </div>
+          <div class="team-name">Karina Chalapova</div>
+          <div class="team-role-badge">✦ Vyriausia gydytoja</div>
+          <div class="team-specialties">
+            <span class="specialty-tag">Terapeutė</span>
+            <span class="specialty-tag">Kardiologė</span>
+            <span class="specialty-tag">Chirurgė</span>
+          </div>
+        </div>
+        <div class="team-card-body">
+          <div class="team-card-divider"></div>
+          <p style="font-size:.875rem;color:var(--text-light);line-height:1.7;margin-bottom:20px;">
+            Karina – vyriausioji klinikos gydytoja, turinti gilias žinias kardiologijos ir vidaus
+            ligų srityse. Jos kruopštumas ir empatija augintiniams bei jų šeimininkams – tai,
+            kuo ji ypač vertinama.
+          </p>
+          <a href="tel:+37060798800" class="team-cta">
+            📞 Konsultuotis
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ CONTACT ═══════════════ -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="section-label reveal">Kontaktai</div>
+        <h2 class="reveal reveal-delay-1">Susisiekite<br><em style="font-family:var(--font-head);font-style:italic;color:var(--sage-deep);">su mumis</em></h2>
+        <div class="divider reveal reveal-delay-1"></div>
+        <p class="reveal reveal-delay-2">
+          Norite pasikonsultuoti dėl savo augintinio sveikatos? Paskambinkite — mes pasiruošę
+          padėti darbo dienomis nuo 8:30 iki 18:00. Konsultacija telefonu — nemokama.
+        </p>
+
+        <div class="contact-card reveal reveal-delay-2">
+          <div class="contact-item">
+            <div class="contact-icon">📞</div>
+            <div>
+              <div class="contact-label">Telefonas</div>
+              <div class="contact-value">+370 607 98800</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">🕐</div>
+            <div>
+              <div class="contact-label">Darbo laikas</div>
+              <div class="contact-value">8:30 – 18:00 (darbo dienomis)</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">📍</div>
+            <div>
+              <div class="contact-label">Adresas</div>
+              <div class="contact-value">Vilnius, Lietuva</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">💬</div>
+            <div>
+              <div class="contact-label">Konsultacija</div>
+              <div class="contact-value">Nemokama telefonu</div>
+            </div>
+          </div>
+        </div>
+
+        <a href="tel:+37060798800" class="big-call-btn reveal reveal-delay-3">
+          <div class="big-call-left">
+            <h3>Skambinkite dabar</h3>
+            <p>Nemokama konsultacija telefonu</p>
+          </div>
+          <div class="big-call-phone">📞 +370 607 98800</div>
+        </a>
+      </div>
+
+      <div class="map-wrap reveal reveal-delay-2">
+        <iframe
+          class="map-embed"
+          src="https://www.openstreetmap.org/export/embed.html?bbox=25.2,54.6,25.4,54.75&layer=mapnik&marker=54.6872,25.2797"
+          title="Vet Klinika žemėlapis"
+          allowfullscreen
+          loading="lazy"
+        ></iframe>
+        <div class="map-overlay-badge">
+          <div class="map-pin-dot"></div>
+          <div class="map-name">🐾 Vet Klinika — Vilnius</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ FOOTER ═══════════════ -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="#hero" class="nav-logo">
+        <div class="nav-logo-icon">🐾</div>
+        Vet Klinika
+      </a>
+      <p>Profesionali veterinarijos pagalba jūsų augintiniams. Rūpestingai, greitai ir su meile.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Paslaugos</h4>
+      <ul>
+        <li><a href="#services">Vakcinacija</a></li>
+        <li><a href="#services">Terapija</a></li>
+        <li><a href="#services">Kardiologija</a></li>
+        <li><a href="#services">Oftalmologija</a></li>
+        <li><a href="#services">Chirurgija</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Kontaktai</h4>
+      <ul>
+        <li><a href="tel:+37060798800">+370 607 98800</a></li>
+        <li><a href="#about">8:30 – 18:00</a></li>
+        <li><a href="#team">Komanda</a></li>
+        <li><a href="#contact">Vilnius, Lietuva</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Vet Klinika. Visos teisės saugomos.</p>
+    <p>Sukurta su <span class="footer-heart">♥</span> Vilniuje</p>
+  </div>
+</footer>
+
+<!-- SCROLL TO TOP -->
+<button class="scroll-top" id="scrollTop" aria-label="Grįžti į viršų">↑</button>
+
+<script>
+  /* ── CURSOR ── */
+  const dot  = document.getElementById('cursorDot');
+  const ring = document.getElementById('cursorRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+  function animateCursor() {
+    dot.style.left  = mx + 'px';
+    dot.style.top   = my + 'px';
+    rx += (mx - rx) * .12;
+    ry += (my - ry) * .12;
+    ring.style.left = rx + 'px';
+    ring.style.top  = ry + 'px';
+    requestAnimationFrame(animateCursor);
+  }
+  animateCursor();
+  document.querySelectorAll('a,button,.service-card,.team-card,.info-card').forEach(el => {
+    el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
+    el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
+  });
+
+  /* ── NAV SCROLL ── */
+  const nav = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+    scrollTopBtn.classList.toggle('visible', window.scrollY > 400);
+  });
+
+  /* ── SCROLL TO TOP ── */
+  const scrollTopBtn = document.getElementById('scrollTop');
+  scrollTopBtn.addEventListener('click', () => window.scrollTo({top:0,behavior:'smooth'}));
+
+  /* ── MOBILE MENU ── */
+  const menu = document.getElementById('mobileMenu');
+  document.getElementById('hamburger').addEventListener('click', () => menu.classList.toggle('open'));
+  document.getElementById('mobileClose').addEventListener('click', () => menu.classList.remove('open'));
+  function closeMobile() { menu.classList.remove('open'); }
+
+  /* ── REVEAL ON SCROLL ── */
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(el => observer.observe(el));
+
+  /* Immediately show hero content */
+  document.querySelectorAll('#hero .reveal').forEach(el => {
+    setTimeout(() => el.classList.add('visible'), 100 + parseInt(el.className.match(/delay-(\d)/)?.[1]||0) * 100);
+  });
+
+  /* ── RIPPLE EFFECT ── */
+  document.getElementById('mainCallBtn').addEventListener('click', function(e) {
+    const ripple = document.createElement('span');
+    ripple.classList.add('ripple');
+    const rect = this.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height);
+    ripple.style.cssText = `width:${size}px;height:${size}px;left:${e.clientX-rect.left-size/2}px;top:${e.clientY-rect.top-size/2}px`;
+    this.appendChild(ripple);
+    setTimeout(() => ripple.remove(), 700);
+  });
+
+  /* ── SMOOTH PARALLAX BLOBS ── */
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    document.querySelector('.blob-1').style.transform = `translate(${y*0.02}px,${-y*0.04}px)`;
+    document.querySelector('.blob-2').style.transform = `translate(${-y*0.015}px,${y*0.03}px)`;
+  });
+
+  /* ── HIDE CURSOR ON MOBILE ── */
+  if ('ontouchstart' in window) {
+    dot.style.display = ring.style.display = 'none';
+  }
+</script>
+</body>
+</html>
