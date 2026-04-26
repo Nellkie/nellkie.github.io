@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet" />
   <style>
-    /* ── RESET & VARIABLES ────────────────────────────────────── */
+    /* RESET & VARIABLES */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
       --cream:      #faf6f0;
@@ -51,7 +51,7 @@
       line-height: 1.6;
     }
 
-    /* ── CURSOR ───────────────────────────────────────────────── */
+    /* CURSOR */
     .cursor-dot {
       width: 8px; height: 8px;
       background: var(--sage);
@@ -73,7 +73,7 @@
     body.hovering .cursor-dot { width: 14px; height: 14px; background: var(--gold); }
     body.hovering .cursor-ring { width: 52px; height: 52px; border-color: var(--gold); opacity: .6; }
 
-    /* ── SCROLL ANIMATIONS ────────────────────────────────────── */
+    /* SCROLL ANIMATIONS */
     .reveal {
       opacity: 0;
       transform: translateY(36px);
@@ -85,7 +85,7 @@
     .reveal-delay-3 { transition-delay: .3s; }
     .reveal-delay-4 { transition-delay: .4s; }
 
-    /* ── NAVIGATION ───────────────────────────────────────────── */
+    /* NAVIGATION */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
       padding: 18px 40px;
@@ -145,7 +145,7 @@
     .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
     .hamburger span { width: 24px; height: 2px; background: var(--brown); border-radius: 2px; transition: .3s; }
 
-    /* ── HERO ─────────────────────────────────────────────────── */
+    /* HERO */
     #hero {
       min-height: 100vh;
       display: flex; align-items: center;
@@ -390,7 +390,7 @@
       50%      { transform: translateY(-8px); }
     }
 
-    /* ── SECTION SHARED ───────────────────────────────────────── */
+    /* SECTION SHARED */
     section { padding: 96px 40px; }
     .container { max-width: 1200px; margin: 0 auto; }
     .section-label {
@@ -427,7 +427,7 @@
       margin: 20px 0;
     }
 
-    /* ── ABOUT SECTION ────────────────────────────────────────── */
+    /* ABOUT SECTION */
     #about {
       background: var(--warm-white);
       position: relative; overflow: hidden;
@@ -507,7 +507,7 @@
     .info-card-title { font-weight: 600; font-size: .9rem; color: var(--brown-dark); margin-bottom: 4px; }
     .info-card-text { font-size: .8rem; color: var(--text-light); line-height: 1.5; }
 
-    /* ── SERVICES ─────────────────────────────────────────────── */
+    /* SERVICES */
     #services { background: var(--cream); }
     .services-header {
       display: flex; justify-content: space-between; align-items: flex-end;
@@ -577,7 +577,7 @@
     .service-card-wide .service-icon-wrap { width: 80px; height: 80px; font-size: 2.5rem; flex-shrink: 0; }
     .service-card-wide .service-content { flex: 1; }
 
-    /* ── TEAM ─────────────────────────────────────────────────── */
+    /* TEAM */
     #team {
       background: linear-gradient(180deg, var(--warm-white) 0%, var(--cream) 100%);
       position: relative;
@@ -699,7 +699,7 @@
       transform: rotate(15deg);
     }
 
-    /* ── TRUST STRIP ──────────────────────────────────────────── */
+    /* TRUST STRIP */
     #trust {
       padding: 48px 40px;
       background: linear-gradient(135deg, var(--sage-deep), #3a5c3e);
@@ -751,7 +751,7 @@
     }
     .trust-stat-lbl { font-size: .75rem; color: rgba(255,255,255,.6); text-transform: uppercase; letter-spacing: .08em; }
 
-    /* ── CONTACT ──────────────────────────────────────────────── */
+    /* CONTACT */
     #contact { background: var(--cream); }
     .contact-grid {
       display: grid; grid-template-columns: 1fr 1fr;
@@ -849,7 +849,7 @@
     .map-pin-dot { width: 12px; height: 12px; background: var(--sage); border-radius: 50%; animation: blink 2s infinite; }
     .map-name { font-size: .85rem; font-weight: 600; color: var(--brown-dark); }
 
-    /* ── FOOTER ───────────────────────────────────────────────── */
+    /* FOOTER */
     footer {
       background: var(--brown-dark);
       color: rgba(255,255,255,.7);
@@ -881,7 +881,7 @@
     .footer-bottom p { color: rgba(255,255,255,.35); }
     .footer-heart { color: var(--rose); }
 
-    /* ── MOBILE MENU ──────────────────────────────────────────── */
+    /* MOBILE MENU */
     .mobile-menu {
       position: fixed; inset: 0; z-index: 999;
       background: rgba(250,246,240,.97);
@@ -908,7 +908,7 @@
       padding: 8px;
     }
 
-    /* ── SCROLL TO TOP ────────────────────────────────────────── */
+    /* SCROLL TO TOP */
     .scroll-top {
       position: fixed; bottom: 32px; right: 32px; z-index: 100;
       width: 52px; height: 52px;
@@ -923,7 +923,7 @@
     .scroll-top.visible { opacity: 1; transform: translateY(0); }
     .scroll-top:hover { transform: translateY(-3px); }
 
-    /* ── MEDIA QUERIES ────────────────────────────────────────── */
+    /* MEDIA QUERIES */
     @media (max-width: 900px) {
       nav { padding: 14px 20px; }
       nav.scrolled { padding: 10px 20px; }
@@ -988,7 +988,7 @@
   </div>
 </nav>
 
-<!-- ═══════════════ HERO ═══════════════ -->
+<!-- HERO -->
 <section id="hero">
   <div class="hero-bg"></div>
   <div class="blob blob-1"></div>
@@ -1054,7 +1054,7 @@
   </div>
 </section>
 
-<!-- ═══════════════ ABOUT ═══════════════ -->
+<!-- ABOUT -->
 <section id="about">
   <div class="container">
     <div class="about-grid">
@@ -1117,7 +1117,7 @@
   </div>
 </section>
 
-<!-- ═══════════════ SERVICES ═══════════════ -->
+<!-- SERVICES -->
 <section id="services">
   <div class="container">
     <div class="services-header">
@@ -1195,7 +1195,7 @@
   </div>
 </section>
 
-<!-- ═══════════════ TRUST STRIP ═══════════════ -->
+<!-- TRUST STRIP -->
 <div id="trust">
   <div class="trust-inner">
     <div class="trust-text reveal">
@@ -1222,7 +1222,7 @@
   </div>
 </div>
 
-<!-- ═══════════════ TEAM ═══════════════ -->
+<!-- TEAM -->
 <section id="team">
   <div class="container">
     <div class="team-header">
@@ -1296,7 +1296,7 @@
   </div>
 </section>
 
-<!-- ═══════════════ CONTACT ═══════════════ -->
+<!-- CONTACT -->
 <section id="contact">
   <div class="container">
     <div class="contact-grid">
@@ -1366,7 +1366,7 @@
   </div>
 </section>
 
-<!-- ═══════════════ FOOTER ═══════════════ -->
+<!-- FOOTER -->
 <footer>
   <div class="footer-top">
     <div class="footer-brand">
@@ -1402,11 +1402,11 @@
   </div>
 </footer>
 
-<!-- SCROLL TO TOP -->
+  <!-- SCROLL TO TOP -->
 <button class="scroll-top" id="scrollTop" aria-label="Grįžti į viršų">↑</button>
-
+ 
 <script>
-  /* ── CURSOR ── */
+  //  CURSOR
   const dot  = document.getElementById('cursorDot');
   const ring = document.getElementById('cursorRing');
   let mx = 0, my = 0, rx = 0, ry = 0;
@@ -1426,24 +1426,24 @@
     el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
   });
 
-  /* ── NAV SCROLL ── */
+  // NAV SCROLL
   const nav = document.getElementById('navbar');
   window.addEventListener('scroll', () => {
     nav.classList.toggle('scrolled', window.scrollY > 60);
     scrollTopBtn.classList.toggle('visible', window.scrollY > 400);
   });
 
-  /* ── SCROLL TO TOP ── */
+  // SCROLL TO TOP
   const scrollTopBtn = document.getElementById('scrollTop');
   scrollTopBtn.addEventListener('click', () => window.scrollTo({top:0,behavior:'smooth'}));
 
-  /* ── MOBILE MENU ── */
+  // MOBILE MENU
   const menu = document.getElementById('mobileMenu');
   document.getElementById('hamburger').addEventListener('click', () => menu.classList.toggle('open'));
   document.getElementById('mobileClose').addEventListener('click', () => menu.classList.remove('open'));
   function closeMobile() { menu.classList.remove('open'); }
 
-  /* ── REVEAL ON SCROLL ── */
+  // REVEAL ON SCROLL
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -1454,12 +1454,12 @@
   }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
   reveals.forEach(el => observer.observe(el));
 
-  /* Immediately show hero content */
+  // Immediately show hero content
   document.querySelectorAll('#hero .reveal').forEach(el => {
     setTimeout(() => el.classList.add('visible'), 100 + parseInt(el.className.match(/delay-(\d)/)?.[1]||0) * 100);
   });
 
-  /* ── RIPPLE EFFECT ── */
+  // RIPPLE EFFECT
   document.getElementById('mainCallBtn').addEventListener('click', function(e) {
     const ripple = document.createElement('span');
     ripple.classList.add('ripple');
@@ -1470,14 +1470,14 @@
     setTimeout(() => ripple.remove(), 700);
   });
 
-  /* ── SMOOTH PARALLAX BLOBS ── */
+  // SMOOTH PARALLAX BLOBS
   window.addEventListener('scroll', () => {
     const y = window.scrollY;
     document.querySelector('.blob-1').style.transform = `translate(${y*0.02}px,${-y*0.04}px)`;
     document.querySelector('.blob-2').style.transform = `translate(${-y*0.015}px,${y*0.03}px)`;
   });
 
-  /* ── HIDE CURSOR ON MOBILE ── */
+  // HIDE CURSOR ON MOBILE
   if ('ontouchstart' in window) {
     dot.style.display = ring.style.display = 'none';
   }
