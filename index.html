@@ -506,7 +506,6 @@
       position: relative; overflow: hidden;
       cursor: default;
       transition: transform .4s var(--transition), box-shadow .4s, border-color .3s;
-      group: true;
     }
     .service-card::before {
       content: '';
@@ -732,7 +731,7 @@
     .trust-stat-lbl { font-size: .75rem; color: rgba(255,255,255,.6); text-transform: uppercase; letter-spacing: .08em; }
 
     /* CONTACT */
-    #contact { background: var(--cream); }
+    #contact { background: var(--cream); padding-top: 120px; margin-top: -120px; }
     .contact-grid {
       display: grid; grid-template-columns: 1fr 1fr;
       gap: 60px; align-items: start;
@@ -1132,41 +1131,12 @@
         <div class="service-desc">Širdies ligų diagnostika ir gydymas. EKG, ultragarso tyrimai ir individualus kardiologinis gydymas.</div>
         <div class="service-arrow">→</div>
       </div>
+    </div>
 
-      <div class="service-card reveal reveal-delay-2">
-        <div class="service-icon-wrap ic-blue">🔭</div>
-        <div class="service-name">Oftalmologija</div>
-        <div class="service-desc">Akių ligų diagnostika, gydymas ir chirurginės intervencijos. Specializuota akių priežiūra augintiniams.</div>
-        <div class="service-arrow">→</div>
-      </div>
-
-      <div class="service-card reveal">
-        <div class="service-icon-wrap ic-purple">🏥</div>
-        <div class="service-name">Chirurgija</div>
-        <div class="service-desc">Planinės ir skubios chirurginės operacijos modernia įranga. Saugi anestezija ir kruopštus pooperacinis stebėjimas.</div>
-        <div class="service-arrow">→</div>
-      </div>
-
-      <div class="service-card reveal reveal-delay-1">
-        <div class="service-icon-wrap ic-brown">🩺</div>
-        <div class="service-name">Profilaktinis tikrinimas</div>
-        <div class="service-desc">Kasmetiniai profilaktiniai patikrinimai padeda anksti aptikti ligas. Pilnas sveikatos įvertinimas ir rekomendacijos.</div>
-        <div class="service-arrow">→</div>
-      </div>
-
-      <div class="service-card reveal reveal-delay-2">
-        <div class="service-icon-wrap ic-green">💊</div>
-        <div class="service-name">Laboratoriniai tyrimai</div>
-        <div class="service-desc">Kraujo, šlapimo ir kitų biologinių medžiagų tyrimai. Greiti rezultatai ir tikslus tyrimo interpretavimas.</div>
-        <div class="service-arrow">→</div>
-      </div>
-
-      <div class="service-card reveal reveal-delay-3">
-        <div class="service-icon-wrap ic-gold">🦷</div>
-        <div class="service-name">Stomatologija</div>
-        <div class="service-desc">Dantų valymas, gydymas ir traukimas. Burnos sveikatos priežiūra augintiniams – svarbi bendros sveikatos dalis.</div>
-        <div class="service-arrow">→</div>
-      </div>
+    <div class="reveal reveal-delay-2" style="text-align:center; margin-top:40px;">
+      <a href="paslaugos.html" class="btn-secondary" style="display:inline-flex;gap:10px;align-items:center;padding:16px 36px;font-size:1rem;">
+        Visos paslaugos ir kainos <span style="font-size:1.1em;">→</span>
+      </a>
     </div>
   </div>
 </section>
