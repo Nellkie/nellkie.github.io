@@ -279,27 +279,44 @@
       .nav-logo { font-size: 1.3rem; }
       .nav-logo-icon { width: 28px; height: 28px; font-size: .9rem; }
       .nav-back { font-size: .8rem; padding: 6px 14px; }
-
+      nav {
+        flex-direction: column;
+        gap: 8px;
+      }
+      .nav-logo {
+        align-self: center;
+      }
+      .nav-back {
+        align-self: center;
+      }
       .page-header { padding: 32px 16px 24px; }
       .page-title { font-size: 2rem; line-height: 1.1; }
       .page-subtitle { font-size: .9rem; }
       .note-banner { font-size: .8rem; padding: 12px 16px; }
-
       .content { padding: 24px 16px 40px; }
       .price-section { margin-bottom: 32px; }
       .price-section-title { font-size: 1.4rem; }
       .price-section-subtitle { font-size: .85rem; }
-
       .price-table tr { padding: 14px 14px; }
       .price-table td { font-size: .82rem; }
       .price-table td:last-child { font-size: .85rem; }
       .price-table .sub-label td { font-size: .86rem; padding-bottom: 6px; }
       .note-row td { font-size: .78rem; padding-top: 4px; padding-bottom: 6px; }
-
       .call-banner { padding: 24px 16px; margin-top: 40px; }
       .call-banner-text h3 { font-size: 1.4rem; }
       .call-banner-text p { font-size: .85rem; }
       .call-banner-btn { font-size: .9rem; padding: 12px 20px; }
+    }
+
+    @media (max-width: 360px) {
+      .page-title { font-size: 1.8rem; }
+      .content { padding: 20px 12px 30px; }
+      .price-table tr { padding: 12px 12px; }
+      .price-table td { font-size: .75rem; }
+      .price-table td:last-child { font-size: .8rem; }
+      .call-banner { padding: 20px 12px; }
+      .call-banner-text h3 { font-size: 1.2rem; }
+      .call-banner-btn { font-size: .8rem; padding: 10px 16px; }
     }
   </style>
 </head>
