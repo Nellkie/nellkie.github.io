@@ -150,37 +150,69 @@
     }
 
     /* PRICE TABLE */
-    .price-table { width: 100%; border-collapse: collapse; }
-    .price-table tr {
-      border-bottom: 1px solid rgba(201,184,154,.2);
-      transition: background .2s;
+    .price-table {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px 12px;
+      align-items: center;
     }
-    .price-table tr:last-child { border-bottom: none; }
-    .price-table tr:hover { background: rgba(168,197,171,.07); }
-    .price-table td {
-      padding: 13px 8px;
-      font-size: .92rem; color: var(--text-mid);
-      vertical-align: middle;
+    .price-table-row {
+      display: contents;
+    }
+    .price-table-row:hover .price-item {
+      background: rgba(168,197,171,.07);
+      border-radius: 8px;
+    }
+    .price-item {
+      grid-column: 1;
+      padding: 10px 12px;
+      font-size: .92rem;
+      color: var(--text-mid);
+      line-height: 1.5;
       word-break: break-word;
       overflow-wrap: break-word;
-      word-wrap: break-word;
+      border-bottom: 1px solid rgba(201,184,154,.15);
+      transition: all .2s;
     }
-    .price-table td:last-child {
+    .price-amount {
+      grid-column: 2;
+      padding: 10px 12px;
       text-align: right;
       font-weight: 600;
       color: var(--sage-deep);
-      white-space: nowrap;
-      padding-left: 24px;
+      font-size: .92rem;
+      white-space: normal;
+      word-break: break-word;
+      border-bottom: 1px solid rgba(201,184,154,.15);
+      transition: all .2s;
     }
-    .price-table .sub-label {
-      font-weight: 600; color: var(--text-dark);
-      font-size: .88rem; padding-top: 18px; padding-bottom: 4px;
+    .price-item:last-of-type,
+    .price-amount:last-of-type {
+      border-bottom: none;
     }
-    .price-table .sub-label td { color: var(--brown); font-weight: 700; padding-top: 20px; }
-    .price-table .sub-label td:last-child { color: var(--brown); }
-    .note-row td {
-      font-size: .8rem; color: var(--text-light);
-      font-style: italic; padding-top: 4px; padding-bottom: 12px;
+    .price-section-header {
+      grid-column: 1 / -1;
+      font-weight: 600;
+      color: var(--brown);
+      font-size: .88rem;
+      padding: 14px 12px 6px 12px;
+      border-bottom: none;
+    }
+    .price-note {
+      grid-column: 1 / -1;
+      font-size: .8rem;
+      color: var(--sage-deep);
+      font-style: italic;
+      padding: 6px 12px 8px 12px;
+      border-bottom: none;
+      line-height: 1.4;
+      word-break: break-word;
+      overflow-wrap: break-word;
+      font-weight: 500;
+    }
+    .price-note:last-child {
+      border-bottom: none;
     }
 
     /* CALL BANNER */
@@ -233,51 +265,58 @@
       .price-section-subtitle { margin-left: 0; }
 
       .price-table {
-        border-collapse: separate;
-        border-spacing: 0 10px;
-        width: 100%;
-      }
-      .price-table tr {
         display: grid;
         grid-template-columns: 1fr auto;
-        gap: 12px;
+        gap: 10px 10px;
+        width: 100%;
+      }
+      .price-table-row {
+        display: contents;
+      }
+      .price-item {
+        grid-column: 1;
+        padding: 14px 16px;
         background: rgba(255,255,255,.9);
         border-radius: 20px;
-        padding: 16px 18px;
+        border: none;
         box-shadow: var(--shadow-sm);
-      }
-      .price-table tr:hover { background: rgba(168,197,171,.1); }
-      .price-table td {
-        display: block;
-        padding: 0;
         font-size: .88rem;
         line-height: 1.4;
-        white-space: normal;
-        word-break: break-word;
-        overflow-wrap: break-word;
-        word-wrap: break-word;
-        min-width: 0;
       }
-      .price-table td:last-child {
-        text-align: right;
+      .price-amount {
+        grid-column: 2;
+        padding: 14px 16px;
+        background: rgba(255,255,255,.9);
+        border-radius: 20px;
+        border: none;
+        box-shadow: var(--shadow-sm);
+        font-size: .88rem;
         font-weight: 600;
         color: var(--sage-deep);
-        padding-top: 4px;
-        white-space: nowrap;
+        text-align: right;
+        white-space: normal;
+        word-break: break-word;
       }
-      .price-table .sub-label td,
-      .price-table .note-row td {
+      .price-table-row:hover .price-item,
+      .price-table-row:hover .price-amount {
+        background: rgba(168,197,171,.1);
+      }
+      .price-section-header {
         grid-column: 1 / -1;
+        background: transparent;
+        border: none;
+        box-shadow: none;
+        padding: 10px 0;
       }
-      .price-table .sub-label td {
-        font-size: .9rem;
-        padding-bottom: 8px;
-        color: var(--brown);
-      }
-      .price-table .note-row td {
-        padding-top: 6px;
-        color: var(--text-light);
+      .price-note {
+        grid-column: 1 / -1;
+        padding: 10px 16px;
+        background: transparent;
+        border: none;
+        box-shadow: none;
+        color: var(--sage-deep);
         font-style: italic;
+        font-weight: 500;
       }
     }
 
@@ -305,11 +344,32 @@
       .price-section { margin-bottom: 32px; }
       .price-section-title { font-size: 1.4rem; word-break: break-word; }
       .price-section-subtitle { font-size: .85rem; word-break: break-word; }
-      .price-table tr { padding: 12px 12px; }
-      .price-table td { font-size: .8rem; word-break: break-word; overflow-wrap: break-word; word-wrap: break-word; }
-      .price-table td:last-child { font-size: .82rem; }
-      .price-table .sub-label td { font-size: .82rem; padding-bottom: 6px; }
-      .note-row td { font-size: .75rem; padding-top: 4px; padding-bottom: 6px; }
+      .price-table {
+        gap: 8px 8px;
+      }
+      .price-item {
+        padding: 11px 12px;
+        font-size: .8rem;
+        word-break: break-word;
+        overflow-wrap: break-word;
+      }
+      .price-amount {
+        padding: 11px 12px;
+        font-size: .82rem;
+        word-break: break-word;
+      }
+      .price-section-header {
+        padding: 8px 0;
+        font-size: .82rem;
+      }
+      .price-note {
+        font-size: .75rem;
+        padding: 5px 12px;
+        word-break: break-word;
+        overflow-wrap: break-word;
+        color: var(--sage-deep);
+        font-weight: 500;
+      }
       .call-banner { padding: 24px 16px; margin-top: 40px; }
       .call-banner-text h3 { font-size: 1.4rem; word-break: break-word; }
       .call-banner-text p { font-size: .85rem; word-break: break-word; }
@@ -319,9 +379,32 @@
     @media (max-width: 360px) {
       .page-title { font-size: 1.8rem; word-break: break-word; }
       .content { padding: 20px 12px 30px; }
-      .price-table tr { padding: 10px 10px; }
-      .price-table td { font-size: .7rem; word-break: break-word; overflow-wrap: break-word; word-wrap: break-word; }
-      .price-table td:last-child { font-size: .75rem; }
+      .price-table {
+        gap: 6px 6px;
+      }
+      .price-item {
+        padding: 9px 10px;
+        font-size: .7rem;
+        word-break: break-word;
+        overflow-wrap: break-word;
+      }
+      .price-amount {
+        padding: 9px 10px;
+        font-size: .75rem;
+        word-break: break-word;
+      }
+      .price-section-header {
+        font-size: .75rem;
+        padding: 6px 0;
+      }
+      .price-note {
+        font-size: .65rem;
+        padding: 3px 10px;
+        word-break: break-word;
+        overflow-wrap: break-word;
+        color: var(--sage-deep);
+        font-weight: 500;
+      }
       .call-banner { padding: 20px 12px; }
       .call-banner-text h3 { font-size: 1.2rem; word-break: break-word; }
       .call-banner-btn { font-size: .8rem; padding: 10px 16px; word-break: break-word; }
@@ -353,27 +436,27 @@
   <div class="price-section">
     <div class="price-section-title">Bendrosios paslaugos</div>
     <div class="section-divider"></div>
-    <table class="price-table">
-      <tr><td>Gyvūno pirminė apžiūra, anamnezės surinkimas, konsultacija, gydymo paskyrimas</td><td>20 €</td></tr>
-      <tr><td>Gydytojo konsultacija šventinėmis dienomis ir be išankstinės registracijos</td><td>35 €</td></tr>
-      <tr class="note-row"><td colspan="2">Paslaugoms ne darbo metu arba ekstra atvejams po 20:30 taikomas 100% antkainis</td></tr>
-      <tr><td>Iškvietimas į namus</td><td>nuo 8 € (priklauso nuo atstumo)</td></tr>
-      <tr><td>Pakartotinė apžiūra*</td><td>10 €</td></tr>
-      <tr class="note-row"><td colspan="2">*Vaistai ir tyrimai į pakartotinio vizito kainą nėra įskaičiuoti</td></tr>
-      <tr><td>Profilaktinė gyvūno apžiūra</td><td>10 €</td></tr>
-      <tr><td>Profilaktinė gyvūno apžiūra, ausų, paranalinių liaukų valymas ir nagų kirpimas</td><td>20 €</td></tr>
-      <tr><td>Gyvūno apžiūra ir sveikatos pažymėjimo užpildymas prieš kelionę į užsienį</td><td>10 €</td></tr>
-      <tr><td>Konsultacija be gyvūno apžiūros</td><td>15 €</td></tr>
-      <tr><td>Pažyma, ligos istorijos išrašas (lietuvių kalba)</td><td>5 €</td></tr>
-      <tr><td>Recepto išrašymas</td><td>4 €</td></tr>
-      <tr><td>Recepto išrašymas (pakartotinis)</td><td>2 €</td></tr>
-      <tr><td>Para stacionare katėms (be sunaudotų priemonių)</td><td>8 €</td></tr>
-      <tr><td>Para stacionare šunims (be sunaudotų priemonių)</td><td>10 €</td></tr>
-      <tr><td>Intensyvi dienos priežiūra</td><td>20 €</td></tr>
-      <tr><td>Sunaudotos priemonės stacionare parai (kraikas, palos ir kt.)</td><td>3–5 €</td></tr>
-      <tr><td>Skubus tęstinio gydymo vaistų siuntimas</td><td>6 €</td></tr>
-      <tr><td>Šlapimo pūslės kateterizacija (be vaistų)</td><td>28 €</td></tr>
-    </table>
+    <div class="price-table">
+      <div class="price-table-row"><div class="price-item">Gyvūno pirminė apžiūra, anamnezės surinkimas, konsultacija, gydymo paskyrimas</div><div class="price-amount">20 €</div></div>
+      <div class="price-table-row"><div class="price-item">Gydytojo konsultacija šventinėmis dienomis ir be išankstinės registracijos</div><div class="price-amount">35 €</div></div>
+      <div class="price-note">Paslaugoms ne darbo metu arba ekstra atvejams po 20:30 taikomas 100% antkainis</div>
+      <div class="price-table-row"><div class="price-item">Iškvietimas į namus</div><div class="price-amount">nuo 8 € (priklauso nuo atstumo)</div></div>
+      <div class="price-table-row"><div class="price-item">Pakartotinė apžiūra*</div><div class="price-amount">10 €</div></div>
+      <div class="price-note">*Vaistai ir tyrimai į pakartotinio vizito kainą nėra įskaičiuoti</div>
+      <div class="price-table-row"><div class="price-item">Profilaktinė gyvūno apžiūra</div><div class="price-amount">10 €</div></div>
+      <div class="price-table-row"><div class="price-item">Profilaktinė gyvūno apžiūra, ausų, paranalinių liaukų valymas ir nagų kirpimas</div><div class="price-amount">20 €</div></div>
+      <div class="price-table-row"><div class="price-item">Gyvūno apžiūra ir sveikatos pažymėjimo užpildymas prieš kelionę į užsienį</div><div class="price-amount">10 €</div></div>
+      <div class="price-table-row"><div class="price-item">Konsultacija be gyvūno apžiūros</div><div class="price-amount">15 €</div></div>
+      <div class="price-table-row"><div class="price-item">Pažyma, ligos istorijos išrašas (lietuvių kalba)</div><div class="price-amount">5 €</div></div>
+      <div class="price-table-row"><div class="price-item">Recepto išrašymas</div><div class="price-amount">4 €</div></div>
+      <div class="price-table-row"><div class="price-item">Recepto išrašymas (pakartotinis)</div><div class="price-amount">2 €</div></div>
+      <div class="price-table-row"><div class="price-item">Para stacionare katėms (be sunaudotų priemonių)</div><div class="price-amount">8 €</div></div>
+      <div class="price-table-row"><div class="price-item">Para stacionare šunims (be sunaudotų priemonių)</div><div class="price-amount">10 €</div></div>
+      <div class="price-table-row"><div class="price-item">Intensyvi dienos priežiūra</div><div class="price-amount">20 €</div></div>
+      <div class="price-table-row"><div class="price-item">Sunaudotos priemonės stacionare parai (kraikas, palos ir kt.)</div><div class="price-amount">3–5 €</div></div>
+      <div class="price-table-row"><div class="price-item">Skubus tęstinio gydymo vaistų siuntimas</div><div class="price-amount">6 €</div></div>
+      <div class="price-table-row"><div class="price-item">Šlapimo pūslės kateterizacija (be vaistų)</div><div class="price-amount">28 €</div></div>
+    </div>
   </div>
 
   <!-- ANESTEZIJA -->
@@ -381,17 +464,17 @@
     <div class="price-section-title">Anestezija</div>
     <div class="price-section-subtitle">Be sunaudotų vaistų ir priemonių</div>
     <div class="section-divider"></div>
-    <table class="price-table">
-      <tr class="sub-label"><td colspan="2">Gyvūno sedacija 30 min (apžiūros metu ar kito tyrimo metu, kaina su vaistais)</td></tr>
-      <tr><td>Mažas augintinis (iki 10 kg)</td><td>10 €</td></tr>
-      <tr><td>Vidutinio dydžio augintinis (10–30 kg)</td><td>20 €</td></tr>
-      <tr><td>Didelis augintinis (30–60 kg)</td><td>25 €</td></tr>
-      <tr><td>Virš 60 kg</td><td>30 €</td></tr>
-      <tr class="note-row"><td colspan="2">Sedacija po valandos: −50% sedacijos kainos</td></tr>
-      <tr><td>Vietinė nejautra</td><td>nuo 10 €</td></tr>
-      <tr><td>Deguonies terapija (1 val.)</td><td>nuo 10 €</td></tr>
-      <tr><td>Reanimacija</td><td>nuo 80 €</td></tr>
-    </table>
+    <div class="price-table">
+      <div class="price-section-header">Gyvūno sedacija 30 min (apžiūros metu ar kito tyrimo metu, kaina su vaistais)</div>
+      <div class="price-table-row"><div class="price-item">Mažas augintinis (iki 10 kg)</div><div class="price-amount">10 €</div></div>
+      <div class="price-table-row"><div class="price-item">Vidutinio dydžio augintinis (10–30 kg)</div><div class="price-amount">20 €</div></div>
+      <div class="price-table-row"><div class="price-item">Didelis augintinis (30–60 kg)</div><div class="price-amount">25 €</div></div>
+      <div class="price-table-row"><div class="price-item">Virš 60 kg</div><div class="price-amount">30 €</div></div>
+      <div class="price-note">Sedacija po valandos: −50% sedacijos kainos</div>
+      <div class="price-table-row"><div class="price-item">Vietinė nejautra</div><div class="price-amount">nuo 10 €</div></div>
+      <div class="price-table-row"><div class="price-item">Deguonies terapija (1 val.)</div><div class="price-amount">nuo 10 €</div></div>
+      <div class="price-table-row"><div class="price-item">Reanimacija</div><div class="price-amount">nuo 80 €</div></div>
+    </div>
   </div>
 
   <!-- AKUŠERIJA / GINEKOLOGIJA -->
@@ -399,21 +482,21 @@
     <div class="price-section-title">Akušerija, ginekologija, andrologija ir urologija</div>
     <div class="price-section-subtitle">Be sunaudotų vaistų ir priemonių</div>
     <div class="section-divider"></div>
-    <table class="price-table">
-      <tr class="sub-label"><td colspan="2">Kastracija (kaina be sunaudotų priemonių ir vaistų)</td></tr>
-      <tr><td>Katės, triušės, šeškės</td><td>80 €</td></tr>
-      <tr><td>Katino, triušio, šeško</td><td>60 €</td></tr>
-      <tr><td>Katino, triušio, šeško kriptorcho (ingvinalinio)</td><td>70 €</td></tr>
-      <tr><td>Katino, triušio, šeško kriptorcho (abdominalinio)</td><td>80 €</td></tr>
-      <tr><td>Kalės: iki 10 kg</td><td>180 €</td></tr>
-      <tr><td>Kalės: nuo 10 iki 20 kg</td><td>200 €</td></tr>
-      <tr class="sub-label"><td colspan="2">Šlapimo pūslės kateterizacija, ištuštinimas</td></tr>
-      <tr><td>Kalės</td><td>nuo 28 €</td></tr>
-      <tr><td>Katino / šuns</td><td>nuo 28 €</td></tr>
-      <tr><td>Šlapimo pūslės punkcija</td><td>nuo 25 €</td></tr>
-      <tr><td>Uretrostomija, uretrotomija</td><td>nuo 100 €</td></tr>
-      <tr><td>Makšties išsivertimo chirurginis gydymas</td><td>nuo 100 €</td></tr>
-    </table>
+    <div class="price-table">
+      <div class="price-section-header">Kastracija (kaina be sunaudotų priemonių ir vaistų)</div>
+      <div class="price-table-row"><div class="price-item">Katės, triušės, šeškės</div><div class="price-amount">80 €</div></div>
+      <div class="price-table-row"><div class="price-item">Katino, triušio, šeško</div><div class="price-amount">60 €</div></div>
+      <div class="price-table-row"><div class="price-item">Katino, triušio, šeško kriptorcho (ingvinalinio)</div><div class="price-amount">70 €</div></div>
+      <div class="price-table-row"><div class="price-item">Katino, triušio, šeško kriptorcho (abdominalinio)</div><div class="price-amount">80 €</div></div>
+      <div class="price-table-row"><div class="price-item">Kalės: iki 10 kg</div><div class="price-amount">180 €</div></div>
+      <div class="price-table-row"><div class="price-item">Kalės: nuo 10 iki 20 kg</div><div class="price-amount">200 €</div></div>
+      <div class="price-section-header">Šlapimo pūslės kateterizacija, ištuštinimas</div>
+      <div class="price-table-row"><div class="price-item">Kalės</div><div class="price-amount">nuo 28 €</div></div>
+      <div class="price-table-row"><div class="price-item">Katino / šuns</div><div class="price-amount">nuo 28 €</div></div>
+      <div class="price-table-row"><div class="price-item">Šlapimo pūslės punkcija</div><div class="price-amount">nuo 25 €</div></div>
+      <div class="price-table-row"><div class="price-item">Uretrostomija, uretrotomija</div><div class="price-amount">nuo 100 €</div></div>
+      <div class="price-table-row"><div class="price-item">Makšties išsivertimo chirurginis gydymas</div><div class="price-amount">nuo 100 €</div></div>
+    </div>
   </div>
 
   <!-- GASTROENTEROLOGIJA -->
@@ -421,41 +504,41 @@
     <div class="price-section-title">Gastroenterologija ir pilvo chirurgija</div>
     <div class="price-section-subtitle">Be sunaudotų vaistų ir priemonių · nuo 150 €</div>
     <div class="section-divider"></div>
-    <table class="price-table">
-      <tr><td>Klizmavimas</td><td>nuo 50 €</td></tr>
-      <tr><td>Bambos išvaržos operacinis gydymas</td><td>nuo 40 €</td></tr>
-      <tr class="sub-label"><td colspan="2">Diagnostinė laparotomija</td></tr>
-      <tr><td>Katės ir šunys iki 20 kg</td><td>60 €</td></tr>
-      <tr><td>Šunys nuo 20 kg</td><td>100 €</td></tr>
-      <tr><td>Enterotomija</td><td>nuo 180 €</td></tr>
-      <tr><td>Gastrotomija</td><td>nuo 180 €</td></tr>
-      <tr><td>Pilvo sienos išvarža</td><td>nuo 100 €</td></tr>
-      <tr><td>Kirkšnies išvaržos operacinis gydymas</td><td>nuo 105 €</td></tr>
-      <tr><td>Paranalinės liaukos šalinimas (1 vnt.)</td><td>nuo 80 €</td></tr>
-      <tr><td>Profilaktinė gastropeksija</td><td>nuo 130 €</td></tr>
-      <tr><td>Seilių liaukos pašalinimas</td><td>nuo 120 €</td></tr>
-      <tr><td>Skrandžio užsisukimo operacinis gydymas</td><td>nuo 300 €</td></tr>
-      <tr><td>Skrandžio zondo įvedimas</td><td>nuo 25 €</td></tr>
-      <tr><td>Skrandžio plovimas</td><td>nuo 25 €</td></tr>
-      <tr><td>Splenektomija</td><td>nuo 100 €</td></tr>
-    </table>
+    <div class="price-table">
+      <div class="price-table-row"><div class="price-item">Klizmavimas</div><div class="price-amount">nuo 50 €</div></div>
+      <div class="price-table-row"><div class="price-item">Bambos išvaržos operacinis gydymas</div><div class="price-amount">nuo 40 €</div></div>
+      <div class="price-section-header">Diagnostinė laparotomija</div>
+      <div class="price-table-row"><div class="price-item">Katės ir šunys iki 20 kg</div><div class="price-amount">60 €</div></div>
+      <div class="price-table-row"><div class="price-item">Šunys nuo 20 kg</div><div class="price-amount">100 €</div></div>
+      <div class="price-table-row"><div class="price-item">Enterotomija</div><div class="price-amount">nuo 180 €</div></div>
+      <div class="price-table-row"><div class="price-item">Gastrotomija</div><div class="price-amount">nuo 180 €</div></div>
+      <div class="price-table-row"><div class="price-item">Pilvo sienos išvarža</div><div class="price-amount">nuo 100 €</div></div>
+      <div class="price-table-row"><div class="price-item">Kirkšnies išvaržos operacinis gydymas</div><div class="price-amount">nuo 105 €</div></div>
+      <div class="price-table-row"><div class="price-item">Paranalinės liaukos šalinimas (1 vnt.)</div><div class="price-amount">nuo 80 €</div></div>
+      <div class="price-table-row"><div class="price-item">Profilaktinė gastropeksija</div><div class="price-amount">nuo 130 €</div></div>
+      <div class="price-table-row"><div class="price-item">Seilių liaukos pašalinimas</div><div class="price-amount">nuo 120 €</div></div>
+      <div class="price-table-row"><div class="price-item">Skrandžio užsisukimo operacinis gydymas</div><div class="price-amount">nuo 300 €</div></div>
+      <div class="price-table-row"><div class="price-item">Skrandžio zondo įvedimas</div><div class="price-amount">nuo 25 €</div></div>
+      <div class="price-table-row"><div class="price-item">Skrandžio plovimas</div><div class="price-amount">nuo 25 €</div></div>
+      <div class="price-table-row"><div class="price-item">Splenektomija</div><div class="price-amount">nuo 100 €</div></div>
+    </div>
   </div>
 
   <!-- STOMATOLOGIJA -->
   <div class="price-section">
     <div class="price-section-title">Stomatologija</div>
     <div class="section-divider"></div>
-    <table class="price-table">
-      <tr class="sub-label"><td colspan="2">Dantų apnašų valymas ultragarsiniu skaleriu su poliravimua</td></tr>
-      <tr><td>Katei</td><td>35 €</td></tr>
-      <tr><td>Šuniui</td><td>35–80 €</td></tr>
-      <tr class="sub-label"><td colspan="2">Dantų traukimas apnašų valymo metu (mažas −3, vidutinis −5, krūminiai −15)</td></tr>
-      <tr><td>Vienas dantas</td><td>3–12 € / 1 vnt.</td></tr>
-      <tr><td>Dantų traukimas (atskira procedūra)</td><td>nuo 30 €</td></tr>
-      <tr class="note-row"><td colspan="2">Papildomi dantys: mažas −2, vidutinis −5, krūminiai −15 → 2–15 € / 1 vnt.</td></tr>
-      <tr><td>Nosies šnervių plastika</td><td>nuo 60 €</td></tr>
-      <tr><td>Tiriodektomia</td><td>nuo 100 €</td></tr>
-    </table>
+    <div class="price-table">
+      <div class="price-section-header">Dantų apnašų valymas ultragarsiniu skaleriu su poliravimua</div>
+      <div class="price-table-row"><div class="price-item">Katei</div><div class="price-amount">35 €</div></div>
+      <div class="price-table-row"><div class="price-item">Šuniui</div><div class="price-amount">35–80 €</div></div>
+      <div class="price-section-header">Dantų traukimas apnašų valymo metu (mažas −3, vidutinis −5, krūminiai −15)</div>
+      <div class="price-table-row"><div class="price-item">Vienas dantas</div><div class="price-amount">3–12 € / 1 vnt.</div></div>
+      <div class="price-table-row"><div class="price-item">Dantų traukimas (atskira procedūra)</div><div class="price-amount">nuo 30 €</div></div>
+      <div class="price-note">Papildomi dantys: mažas −2, vidutinis −5, krūminiai −15 → 2–15 € / 1 vnt.</div>
+      <div class="price-table-row"><div class="price-item">Nosies šnervių plastika</div><div class="price-amount">nuo 60 €</div></div>
+      <div class="price-table-row"><div class="price-item">Tiriodektomia</div><div class="price-amount">nuo 100 €</div></div>
+    </div>
   </div>
 
   <!-- TRAUMATOLOGIJA -->
@@ -463,18 +546,18 @@
     <div class="price-section-title">Traumatologija ir ortopedija</div>
     <div class="price-section-subtitle">Be sunaudotų vaistų ir priemonių</div>
     <div class="section-divider"></div>
-    <table class="price-table">
-      <tr><td>Tvarstymas (+ tvarsliava atskirai)</td><td>nuo 12 €</td></tr>
-      <tr><td>Žaizdos išvalymas</td><td>nuo 10 €</td></tr>
-      <tr><td>Žaizdos drenažas</td><td>nuo 13 €</td></tr>
-      <tr><td>Žaizdos siuvimas</td><td>nuo 30 €</td></tr>
-      <tr><td>Sausgyslės, raiščio siuvimas</td><td>nuo 45 €</td></tr>
-      <tr><td>Piršto amputacija iki 7 d. amžiaus</td><td>12 € už pirštą</td></tr>
-      <tr><td>Pirmojo piršto amputacija</td><td>nuo 18 €</td></tr>
-      <tr><td>Gipsavimas, įtvaro uždėjimas (+ tvarliava atskirai)</td><td>nuo 55 €</td></tr>
-      <tr><td>Traumuotos uodegos amputacija</td><td>nuo 50 €</td></tr>
-      <tr><td>Galūnės amputacija</td><td>nuo 130 €</td></tr>
-    </table>
+    <div class="price-table">
+      <div class="price-table-row"><div class="price-item">Tvarstymas (+ tvarsliava atskirai)</div><div class="price-amount">nuo 12 €</div></div>
+      <div class="price-table-row"><div class="price-item">Žaizdos išvalymas</div><div class="price-amount">nuo 10 €</div></div>
+      <div class="price-table-row"><div class="price-item">Žaizdos drenažas</div><div class="price-amount">nuo 13 €</div></div>
+      <div class="price-table-row"><div class="price-item">Žaizdos siuvimas</div><div class="price-amount">nuo 30 €</div></div>
+      <div class="price-table-row"><div class="price-item">Sausgyslės, raiščio siuvimas</div><div class="price-amount">nuo 45 €</div></div>
+      <div class="price-table-row"><div class="price-item">Piršto amputacija iki 7 d. amžiaus</div><div class="price-amount">12 € už pirštą</div></div>
+      <div class="price-table-row"><div class="price-item">Pirmojo piršto amputacija</div><div class="price-amount">nuo 18 €</div></div>
+      <div class="price-table-row"><div class="price-item">Gipsavimas, įtvaro uždėjimas (+ tvarliava atskirai)</div><div class="price-amount">nuo 55 €</div></div>
+      <div class="price-table-row"><div class="price-item">Traumuotos uodegos amputacija</div><div class="price-amount">nuo 50 €</div></div>
+      <div class="price-table-row"><div class="price-item">Galūnės amputacija</div><div class="price-amount">nuo 130 €</div></div>
+    </div>
   </div>
 
   <!-- SKIEPAI -->
@@ -482,10 +565,10 @@
     <div class="price-section-title">Skiepai</div>
     <div class="price-section-subtitle">Vakcinos ir paslaugos kaina</div>
     <div class="section-divider"></div>
-    <table class="price-table">
-      <tr><td>Pestorin Mormyx</td><td>10 €</td></tr>
-      <tr><td>Kompleksinė vakcina be pasiutligės</td><td>20 €</td></tr>
-    </table>
+    <div class="price-table">
+      <div class="price-table-row"><div class="price-item">Pestorin Mormyx</div><div class="price-amount">10 €</div></div>
+      <div class="price-table-row"><div class="price-item">Kompleksinė vakcina be pasiutligės</div><div class="price-amount">20 €</div></div>
+    </div>
   </div>
 
   <!-- GREITIEJI TESTAI -->
@@ -493,59 +576,59 @@
     <div class="price-section-title">Greitieji testai</div>
     <div class="price-section-subtitle">Be mėginio paėmimo</div>
     <div class="section-divider"></div>
-    <table class="price-table">
-      <tr><td>Skutmenų, išskyrų ar išmatų mėginio paėmimas</td><td>8 €</td></tr>
-      <tr><td>Kačių toksoplazmozės testas</td><td>13 €</td></tr>
-      <tr><td>Kačių FIV Ab/FeLV Ag testas</td><td>20 €</td></tr>
-      <tr><td>Kačių FCoV Ag testas</td><td>13 €</td></tr>
-      <tr><td>Kačių FPV Ag testas</td><td>15 €</td></tr>
-      <tr><td>Chlam Ag testas</td><td>18 €</td></tr>
-      <tr><td>Gardia Ag testas</td><td>17 €</td></tr>
-      <tr><td>Šunų CPV/CCV Ag / Gardia Ag testas</td><td>15 €</td></tr>
-      <tr><td>Šunų CPV testas</td><td>10 €</td></tr>
-      <tr><td>Šunų 4Dx testas IDEXX</td><td>25 €</td></tr>
-      <tr><td>Šunų Cani V-4 testas</td><td>17 €</td></tr>
-    </table>
+    <div class="price-table">
+      <div class="price-table-row"><div class="price-item">Skutmenų, išskyrų ar išmatų mėginio paėmimas</div><div class="price-amount">8 €</div></div>
+      <div class="price-table-row"><div class="price-item">Kačių toksoplazmozės testas</div><div class="price-amount">13 €</div></div>
+      <div class="price-table-row"><div class="price-item">Kačių FIV Ab/FeLV Ag testas</div><div class="price-amount">20 €</div></div>
+      <div class="price-table-row"><div class="price-item">Kačių FCoV Ag testas</div><div class="price-amount">13 €</div></div>
+      <div class="price-table-row"><div class="price-item">Kačių FPV Ag testas</div><div class="price-amount">15 €</div></div>
+      <div class="price-table-row"><div class="price-item">Chlam Ag testas</div><div class="price-amount">18 €</div></div>
+      <div class="price-table-row"><div class="price-item">Gardia Ag testas</div><div class="price-amount">17 €</div></div>
+      <div class="price-table-row"><div class="price-item">Šunų CPV/CCV Ag / Gardia Ag testas</div><div class="price-amount">15 €</div></div>
+      <div class="price-table-row"><div class="price-item">Šunų CPV testas</div><div class="price-amount">10 €</div></div>
+      <div class="price-table-row"><div class="price-item">Šunų 4Dx testas IDEXX</div><div class="price-amount">25 €</div></div>
+      <div class="price-table-row"><div class="price-item">Šunų Cani V-4 testas</div><div class="price-amount">17 €</div></div>
+    </div>
   </div>
 
   <!-- PAPILDOMI TYRIMAI -->
   <div class="price-section">
     <div class="price-section-title">Papildomi tyrimai ir procedūros</div>
     <div class="section-divider"></div>
-    <table class="price-table">
-      <tr><td>Kraujo paėmimas iš donoro</td><td>20 €</td></tr>
-      <tr><td>Rentgeno nuotraukos aprašymas</td><td>10 €</td></tr>
-      <tr><td>Būklės stabilizavimas esant plaučių edemai</td><td>40 €</td></tr>
-      <tr><td>Broncho-alveolinis lavažas</td><td>20 €</td></tr>
-      <tr><td>Kraujo spaudimo matavimas</td><td>8 €</td></tr>
-      <tr><td>Torakocentezė</td><td>20 €</td></tr>
-      <tr><td>Abdomino centezė</td><td>20 €</td></tr>
-      <tr><td>Krūtinės ląstos punkcija (mėginiui paimti)</td><td>10 €</td></tr>
-      <tr><td>Pilvo ertmės punkcija (mėginiui paimti)</td><td>10 €</td></tr>
-    </table>
+    <div class="price-table">
+      <div class="price-table-row"><div class="price-item">Kraujo paėmimas iš donoro</div><div class="price-amount">20 €</div></div>
+      <div class="price-table-row"><div class="price-item">Rentgeno nuotraukos aprašymas</div><div class="price-amount">10 €</div></div>
+      <div class="price-table-row"><div class="price-item">Būklės stabilizavimas esant plaučių edemai</div><div class="price-amount">40 €</div></div>
+      <div class="price-table-row"><div class="price-item">Broncho-alveolinis lavažas</div><div class="price-amount">20 €</div></div>
+      <div class="price-table-row"><div class="price-item">Kraujo spaudimo matavimas</div><div class="price-amount">8 €</div></div>
+      <div class="price-table-row"><div class="price-item">Torakocentezė</div><div class="price-amount">20 €</div></div>
+      <div class="price-table-row"><div class="price-item">Abdomino centezė</div><div class="price-amount">20 €</div></div>
+      <div class="price-table-row"><div class="price-item">Krūtinės ląstos punkcija (mėginiui paimti)</div><div class="price-amount">10 €</div></div>
+      <div class="price-table-row"><div class="price-item">Pilvo ertmės punkcija (mėginiui paimti)</div><div class="price-amount">10 €</div></div>
+    </div>
   </div>
 
   <!-- UTILIZACIJA -->
   <div class="price-section">
     <div class="price-section-title">Utilizacija</div>
     <div class="section-divider"></div>
-    <table class="price-table">
-      <tr><td>Gyvūno sveriančio mažiau nei 1 kg</td><td>25 €</td></tr>
-      <tr><td>Gyvūno sveriančio daugiau nei 1 kg</td><td>30 € + 1 €/kg</td></tr>
-      <tr><td>Kremavimas</td><td>Grindos kaina</td></tr>
-    </table>
+    <div class="price-table">
+      <div class="price-table-row"><div class="price-item">Gyvūno sveriančio mažiau nei 1 kg</div><div class="price-amount">25 €</div></div>
+      <div class="price-table-row"><div class="price-item">Gyvūno sveriančio daugiau nei 1 kg</div><div class="price-amount">30 € + 1 €/kg</div></div>
+      <div class="price-table-row"><div class="price-item">Kremavimas</div><div class="price-amount">Grindos kaina</div></div>
+    </div>
   </div>
 
   <!-- LABOKLIN -->
   <div class="price-section">
     <div class="price-section-title">Laboratoriniai tyrimai (LABOKLIN)</div>
     <div class="section-divider"></div>
-    <table class="price-table">
-      <tr><td>Kraujo tyrimas – vakcinų antikūnų titrui nustatyti (vienam gyvūnui), Laboklin laboratorija</td><td>—</td></tr>
-      <tr class="note-row"><td colspan="2">2 ir daugiau gyvūnų taikoma 5% nuolaida</td></tr>
-      <tr><td>Mėginio paėmimas ir siuntimas į LABOKLIN laboratoriją (Vokietija)</td><td>23 €</td></tr>
-      <tr class="note-row"><td colspan="2">Tyrimų kainos LABOKLIN laboratorijoje nurodytos atskirame laboratorijos kainyne</td></tr>
-    </table>
+    <div class="price-table">
+      <div class="price-table-row"><div class="price-item">Kraujo tyrimas – vakcinų antikūnų titrui nustatyti (vienam gyvūnui), Laboklin laboratorija</div><div class="price-amount">—</div></div>
+      <div class="price-note">2 ir daugiau gyvūnų taikoma 5% nuolaida</div>
+      <div class="price-table-row"><div class="price-item">Mėginio paėmimas ir siuntimas į LABOKLIN laboratoriją (Vokietija)</div><div class="price-amount">23 €</div></div>
+      <div class="price-note">Tyrimų kainos LABOKLIN laboratorijoje nurodytos atskirame laboratorijos kainyne</div>
+    </div>
   </div>
 
   <!-- CALL BANNER -->
