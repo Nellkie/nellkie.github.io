@@ -153,59 +153,56 @@
     .price-table {
       width: 100%;
       display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 12px 12px;
-      align-items: center;
+      gap: 10px;
     }
     .price-table-row {
-      display: contents;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 18px;
+      align-items: center;
+      padding: 16px 18px;
+      background: rgba(250,246,240,.85);
+      border-radius: 22px;
+      transition: background .2s, transform .2s;
     }
-    .price-table-row:hover .price-item {
-      background: rgba(168,197,171,.07);
-      border-radius: 8px;
+    .price-table-row:hover {
+      background: rgba(122,158,126,.12);
+      transform: translateY(-1px);
     }
     .price-item {
-      grid-column: 1;
-      padding: 10px 12px;
+      padding: 0;
       font-size: .92rem;
       color: var(--text-mid);
       line-height: 1.5;
       word-break: break-word;
       overflow-wrap: break-word;
-      border-bottom: 1px solid rgba(201,184,154,.15);
-      transition: all .2s;
     }
     .price-amount {
-      grid-column: 2;
-      padding: 10px 12px;
+      padding: 0;
       text-align: right;
       font-weight: 600;
       color: var(--sage-deep);
       font-size: .92rem;
       white-space: normal;
       word-break: break-word;
-      border-bottom: 1px solid rgba(201,184,154,.15);
-      transition: all .2s;
-    }
-    .price-item:last-of-type,
-    .price-amount:last-of-type {
-      border-bottom: none;
     }
     .price-section-header {
       grid-column: 1 / -1;
       font-weight: 600;
       color: var(--brown);
       font-size: .88rem;
-      padding: 14px 12px 6px 12px;
-      border-bottom: none;
+      padding: 12px 16px;
+      border-radius: 18px;
+      background: rgba(122,158,126,.08);
     }
     .price-note {
       grid-column: 1 / -1;
       font-size: .8rem;
       color: var(--sage-deep);
       font-style: italic;
-      padding: 6px 12px 8px 12px;
-      border-bottom: none;
+      padding: 10px 16px;
+      border-radius: 18px;
+      background: rgba(122,158,126,.08);
       line-height: 1.4;
       word-break: break-word;
       overflow-wrap: break-word;
@@ -251,8 +248,6 @@
 
     @media (max-width: 768px) {
       .page-title { font-size: 2.5rem; }
-      .price-table td { padding: 10px 6px; font-size: .88rem; }
-      .price-table td:last-child { padding-left: 16px; }
       .call-banner { flex-direction: column; text-align: center; gap: 16px; }
       .call-banner::before { display: none; }
     }
@@ -265,62 +260,33 @@
       .price-section-subtitle { margin-left: 0; }
 
       .price-table {
-        display: grid;
-        grid-template-columns: 1fr auto;
-        gap: 10px 10px;
-        width: 100%;
+        gap: 12px;
       }
       .price-table-row {
-        display: contents;
-      }
-      .price-item {
-        grid-column: 1;
+        grid-template-columns: 1fr auto;
+        gap: 14px;
         padding: 14px 16px;
-        background: rgba(255,255,255,.9);
+        background: rgba(248,244,238,.92);
         border-radius: 20px;
-        border: none;
-        box-shadow: var(--shadow-sm);
-        font-size: .88rem;
-        line-height: 1.4;
+      }
+      .price-item,
+      .price-amount {
+        padding: 0;
       }
       .price-amount {
-        grid-column: 2;
-        padding: 14px 16px;
-        background: rgba(255,255,255,.9);
-        border-radius: 20px;
-        border: none;
-        box-shadow: var(--shadow-sm);
-        font-size: .88rem;
-        font-weight: 600;
-        color: var(--sage-deep);
         text-align: right;
-        white-space: normal;
-        word-break: break-word;
-      }
-      .price-table-row:hover .price-item,
-      .price-table-row:hover .price-amount {
-        background: rgba(168,197,171,.1);
       }
       .price-section-header {
-        grid-column: 1 / -1;
-        background: transparent;
-        border: none;
-        box-shadow: none;
         padding: 10px 0;
+        background: rgba(122,158,126,.08);
       }
       .price-note {
-        grid-column: 1 / -1;
         padding: 10px 16px;
-        background: transparent;
-        border: none;
-        box-shadow: none;
-        color: var(--sage-deep);
-        font-style: italic;
+        background: rgba(122,158,126,.08);
         font-weight: 500;
       }
     }
 
-    /* MOBILE ADAPTIVE */
     @media (max-width: 480px) {
       nav { padding: 12px 16px; }
       .nav-logo { font-size: 1.3rem; }
@@ -345,18 +311,17 @@
       .price-section-title { font-size: 1.4rem; word-break: break-word; }
       .price-section-subtitle { font-size: .85rem; word-break: break-word; }
       .price-table {
-        gap: 8px 8px;
+        gap: 8px;
+      }
+      .price-table-row {
+        gap: 12px;
+        padding: 12px 14px;
       }
       .price-item {
-        padding: 11px 12px;
         font-size: .8rem;
-        word-break: break-word;
-        overflow-wrap: break-word;
       }
       .price-amount {
-        padding: 11px 12px;
         font-size: .82rem;
-        word-break: break-word;
       }
       .price-section-header {
         padding: 8px 0;
@@ -364,11 +329,7 @@
       }
       .price-note {
         font-size: .75rem;
-        padding: 5px 12px;
-        word-break: break-word;
-        overflow-wrap: break-word;
-        color: var(--sage-deep);
-        font-weight: 500;
+        padding: 8px 12px;
       }
       .call-banner { padding: 24px 16px; margin-top: 40px; }
       .call-banner-text h3 { font-size: 1.4rem; word-break: break-word; }
@@ -380,18 +341,16 @@
       .page-title { font-size: 1.8rem; word-break: break-word; }
       .content { padding: 20px 12px 30px; }
       .price-table {
-        gap: 6px 6px;
+        gap: 6px;
+      }
+      .price-table-row {
+        padding: 10px 12px;
       }
       .price-item {
-        padding: 9px 10px;
-        font-size: .7rem;
-        word-break: break-word;
-        overflow-wrap: break-word;
+        font-size: .72rem;
       }
       .price-amount {
-        padding: 9px 10px;
         font-size: .75rem;
-        word-break: break-word;
       }
       .price-section-header {
         font-size: .75rem;
@@ -399,11 +358,7 @@
       }
       .price-note {
         font-size: .65rem;
-        padding: 3px 10px;
-        word-break: break-word;
-        overflow-wrap: break-word;
-        color: var(--sage-deep);
-        font-weight: 500;
+        padding: 6px 10px;
       }
       .call-banner { padding: 20px 12px; }
       .call-banner-text h3 { font-size: 1.2rem; word-break: break-word; }
