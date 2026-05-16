@@ -157,9 +157,9 @@
     }
     .price-table-row {
       display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 18px;
-      align-items: center;
+      grid-template-columns: 1fr;
+      gap: 8px;
+      align-items: start;
       padding: 16px 18px;
       background: rgba(250,246,240,.85);
       border-radius: 22px;
@@ -185,6 +185,7 @@
       font-size: .92rem;
       white-space: normal;
       word-break: break-word;
+      margin-top: 4px;
     }
     .price-section-header {
       grid-column: 1 / -1;
@@ -263,8 +264,8 @@
         gap: 12px;
       }
       .price-table-row {
-        grid-template-columns: 1fr auto;
-        gap: 14px;
+        grid-template-columns: 1fr;
+        gap: 8px;
         padding: 14px 16px;
         background: rgba(248,244,238,.92);
         border-radius: 20px;
@@ -275,6 +276,7 @@
       }
       .price-amount {
         text-align: right;
+        margin-top: 4px;
       }
       .price-section-header {
         padding: 10px 0;
@@ -314,7 +316,8 @@
         gap: 8px;
       }
       .price-table-row {
-        gap: 12px;
+        grid-template-columns: 1fr;
+        gap: 8px;
         padding: 12px 14px;
       }
       .price-item {
@@ -322,6 +325,8 @@
       }
       .price-amount {
         font-size: .82rem;
+        text-align: right;
+        margin-top: 4px;
       }
       .price-section-header {
         padding: 8px 0;
