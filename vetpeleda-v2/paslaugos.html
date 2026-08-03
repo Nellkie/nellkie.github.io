@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Paslaugos ir Kainos – Vet Pelėda</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .price-container { max-width: 900px; margin: 0 auto; padding-bottom: 120px; }
+    
+    .price-card {
+      background-color: var(--bg-white);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 48px; margin-bottom: 40px;
+    }
+    
+    .price-card-header { margin-bottom: 32px; border-bottom: 1px solid var(--border-color); padding-bottom: 16px; }
+    .price-card-title { font-family: var(--font-head); font-size: 2.2rem; color: var(--text-main); }
+    .price-card-subtitle { font-size: 0.9rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-top: 8px; }
+    
+    .price-row {
+      display: flex; justify-content: space-between; align-items: baseline;
+      padding: 16px 0; border-bottom: 1px solid rgba(226, 213, 195, 0.4);
+    }
+    .price-row:last-child { border-bottom: none; padding-bottom: 0; }
+    
+    .price-name { font-size: 1.05rem; color: var(--text-main); max-width: 75%; line-height: 1.4; }
+    .price-val { font-size: 1.1rem; font-weight: 500; color: var(--text-main); white-space: nowrap; margin-left: 16px; }
+    
+    .price-note {
+      font-size: 0.85rem; color: var(--text-muted); font-style: italic;
+      padding-top: 8px; line-height: 1.4;
+    }
+    .price-group-label {
+      font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em;
+      color: var(--accent-sage); margin: 24px 0 8px;
+    }
+
+    .cta-banner {
+      background-color: var(--text-main); 
+      color: var(--bg-cream);
+      padding: 48px; 
+      border-radius: var(--radius); 
+      text-align: center; 
+      margin-top: 60px;
+    }
+
+    @media (max-width: 768px) {
+      .price-card { padding: 32px 24px; }
+      .price-row { flex-direction: column; align-items: flex-start; }
+      .price-val { margin-top: 4px; color: var(--accent-sage); }
+      .price-name { max-width: 100%; }
+      .cta-banner { padding: 40px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo">Vet Pelėda</a>
+    <ul class="nav-links">
+      <li><a href="apie-mus.html">Apie mus</a></li>
+      <li><a href="paslaugos.html" class="active">Paslaugos</a></li>
+      <li><a href="komanda.html">Komanda</a></li>
+      <li><a href="kontaktai.html">Kontaktai</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section>
+  <div class="container price-container">
+    <div style="text-align: center; margin-bottom: 60px;">
+      <h1 class="page-title">Paslaugų kainoraštis</h1>
+      <p class="subtitle" style="margin: 0 auto;">Skaidrios kainos. Profesionalumas ir rūpestis kiekviename žingsnyje.</p>
+    </div>
+
+    <!-- 1. Bendrosios paslaugos -->
+    <div class="price-card">
+      <div class="price-card-header">
+        <h2 class="price-card-title">Bendrosios paslaugos</h2>
+      </div>
+      
+      <div class="price-row"><span class="price-name">Gyvūnų apžiūra – Konsultacija, gydymo paskyrimas</span><span class="price-val">30 €</span></div>
+      <div class="price-row"><span class="price-name">Pakartotinė gyvūnų apžiūra – Konsultacija, gydymo paskyrimas</span><span class="price-val">20 €</span></div>
+      <div class="price-row"><span class="price-name">Siūlų išėmimas – Gydytas kitoje klinikoje</span><span class="price-val">10 €</span></div>
+      <div class="price-row"><span class="price-name">Paros stacionaras gyvūnams – Šunys, katės</span><span class="price-val">15 €</span></div>
+      <div class="price-row"><span class="price-name">Gyvūnų identifikacija – Čipo patikrinimas</span><span class="price-val">5 €</span></div>
+      <div class="price-row"><span class="price-name">Duomenų suvedimas į ŽŪM bazę</span><span class="price-val">15 €</span></div>
+      <div class="price-row"><span class="price-name">Gyvūno peregistravimas – Šunys, katės</span><span class="price-val">10 €</span></div>
+      <div class="price-row"><span class="price-name">ES paso išrašymas</span><span class="price-val">20 €</span></div>
+      <div class="price-row"><span class="price-name">Iškvietimas į namus – Pirminė apžiūra</span><span class="price-val">50 €</span></div>
+      <div class="price-row"><span class="price-name">Ekstra apžiūra – Be eilės</span><span class="price-val">45 €</span></div>
+    </div>
+
+    <!-- 2. Procedūros -->
+    <div class="price-card">
+      <div class="price-card-header">
+        <h2 class="price-card-title">Procedūros</h2>
+      </div>
+      
+      <div class="price-group-label">Lazerio procedūra</div>
+      <div class="price-row"><span class="price-name">Pagrindinio objekto</span><span class="price-val">10 €</span></div>
+      <div class="price-row"><span class="price-name">Papildomo objekto</span><span class="price-val">5 €</span></div>
+      
+      <div class="price-group-label">Nagų kirpimas</div>
+      <div class="price-row"><span class="price-name">Nesudėtingas</span><span class="price-val">10 €</span></div>
+      <div class="price-row"><span class="price-name">Sudėtingas</span><span class="price-val">15 € + sedacijos kaina</span></div>
+      
+      <div class="price-row" style="margin-top: 16px;"><span class="price-name">Giluminis ausų valymas</span><span class="price-val">20 €</span></div>
+      <div class="price-row"><span class="price-name">Paranalinių liaukų valymas</span><span class="price-val">15 €</span></div>
+      <div class="price-row"><span class="price-name">Šlapimo pūslės kateterizacija (be vaistų)</span><span class="price-val">32 €</span></div>
+      <div class="price-row"><span class="price-name">Erkės ištraukimas – Vienetas</span><span class="price-val">5 €</span></div>
+
+      <div class="price-group-label">Vakcinacija</div>
+      <div class="price-row"><span class="price-name">Vakcinacija – Be pasiutligės</span><span class="price-val">25 €</span></div>
+      <div class="price-row"><span class="price-name">Vakcinacija – Su pasiutlige</span><span class="price-val">30 €</span></div>
+      <div class="price-row"><span class="price-name">Gyvūno ženklinimas – Visos rūšys</span><span class="price-val">20 €</span></div>
+    </div>
+
+    <!-- 3. Gyvūnų kastracija -->
+    <div class="price-card">
+      <div class="price-card-header">
+        <h2 class="price-card-title">Gyvūnų kastracija</h2>
+      </div>
+      
+      <div class="price-group-label">Patelės</div>
+      <div class="price-row"><span class="price-name">Katė, triušis, šeškas</span><span class="price-val">90 € (+ marškinėliai)</span></div>
+      <div class="price-row"><span class="price-name">Kalė iki 10 kg</span><span class="price-val">200 €</span></div>
+      <div class="price-row"><span class="price-name">Kalė (10-20 kg.)</span><span class="price-val">220 €</span></div>
+      <div class="price-row"><span class="price-name">Kalė (20-30 kg.)</span><span class="price-val">240 €</span></div>
+      <div class="price-row"><span class="price-name">Kalė (30-40 kg.)</span><span class="price-val">260 €</span></div>
+      <div class="price-row"><span class="price-name">Kalė (40-50 kg.)</span><span class="price-val">280 €</span></div>
+      <div class="price-row"><span class="price-name">Kalė (50-60 kg.)</span><span class="price-val">300 €</span></div>
+      <div class="price-row"><span class="price-name">Kalė virš 60 kg.</span><span class="price-val">340 €</span></div>
+      
+      <div class="price-group-label">Patinai</div>
+      <div class="price-row"><span class="price-name">Katinas, triušis, šeškas</span><span class="price-val">70 €</span></div>
+      <div class="price-row"><span class="price-name">Patinas kriptorchas (inguinalinis)</span><span class="price-val">80 €</span></div>
+      <div class="price-row"><span class="price-name">Patinas kriptorchas (abdominalinis)</span><span class="price-val">90 €</span></div>
+      <div class="price-row"><span class="price-name">Patinas iki 10 kg.</span><span class="price-val">100 €</span></div>
+      <div class="price-row"><span class="price-name">Patinas (10-20 kg.)</span><span class="price-val">110 €</span></div>
+      <div class="price-row"><span class="price-name">Patinas (20-30 kg.)</span><span class="price-val">130 €</span></div>
+      <div class="price-row"><span class="price-name">Patinas (30-40 kg.)</span><span class="price-val">150 €</span></div>
+      <div class="price-row"><span class="price-name">Patinas (40-50 kg.)</span><span class="price-val">170 €</span></div>
+      <div class="price-row"><span class="price-name">Patinas (50-60 kg.)</span><span class="price-val">190 €</span></div>
+      <div class="price-row"><span class="price-name">Patinas virš 60 kg.</span><span class="price-val">210 €</span></div>
+    </div>
+
+    <!-- 4. Burnos higiena -->
+    <div class="price-card">
+      <div class="price-card-header">
+        <h2 class="price-card-title">Burnos higiena</h2>
+      </div>
+      
+      <div class="price-row"><span class="price-name">Dantų valymas – Dantų apnašų nuėmimas</span><span class="price-val">85 €</span></div>
+      <div class="price-row"><span class="price-name">Dantų traukimas – Vienetas</span><span class="price-val">12 €</span></div>
+      <div class="price-row"><span class="price-name">Dantų traukimas – Iltiniai dantys</span><span class="price-val">15 €</span></div>
+      <div class="price-row"><span class="price-name">Dantys sunkiai prieinamose vietose</span><span class="price-val">15 €</span></div>
+      
+      <div class="price-group-label">Lazerio procedūra</div>
+      <div class="price-row"><span class="price-name">Burnos ertmės ir dantukų apdirbimas lazeriu po procedūros, dėl geresnio gijimo ir bakterijų sunaikinimo</span><span class="price-val">15 €</span></div>
+    </div>
+
+    <!-- ТЁМНЫЙ CTA БАННЕР -->
+    <div class="cta-banner">
+      <h3 style="font-family: var(--font-head); font-size: 2.5rem; margin-bottom: 16px;">Turite klausimų?</h3>
+      <p style="opacity: 0.8; margin-bottom: 32px; font-size: 1.1rem;">Paskambinkite — konsultacija telefonu nemokama.</p>
+      <a href="tel:+37060798800" style="display: inline-block; background-color: var(--bg-cream); color: var(--text-main); padding: 16px 32px; border-radius: 4px; font-weight: 500; font-size: 1.1rem;">
+        <i class="ph ph-phone"></i> +370 607 98800
+      </a>
+    </div>
+
+  </div>
+</section>
+
+</body>
+</html>
