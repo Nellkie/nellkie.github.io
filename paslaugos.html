@@ -2,7 +2,7 @@
 <html lang="lt">
 <head>
   <link rel="icon" href="favicon.ico" sizes="any">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Paslaugos ir Kainos – Vet Pelėda</title>
@@ -67,7 +67,14 @@
     <a href="index.html" class="nav-logo">Vet Pelėda</a>
     <ul class="nav-links">
       <li><a href="apie-mus.html">Apie mus</a></li>
-      <li><a href="paslaugos.html" class="active">Paslaugos</a></li>
+      <li class="dropdown">
+        <a href="paslaugos.html" class="active">
+          Paslaugos <i class="ph ph-caret-down" style="font-size: 14px;"></i>
+        </a>
+        <ul class="dropdown-menu">
+          <li><a href="konsultacijos.html">Nuotolinė kons.</a></li>
+        </ul>
+      </li>
       <li><a href="komanda.html">Komanda</a></li>
       <li><a href="kontaktai.html">Kontaktai</a></li>
     </ul>
@@ -180,5 +187,83 @@
   </div>
 </section>
 
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div style="font-family: var(--font-head); font-size: 2rem; margin-bottom: 16px;">Vet Pelėda</div>
+        <p style="opacity: 0.6; max-width: 300px;">Profesionali veterinarijos klinika Juodšiliuose.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigacija</h4>
+        <ul>
+          <li><a href="apie-mus.html">Apie mus</a></li>
+          <li><a href="paslaugos.html">Paslaugos</a></li>
+          <li><a href="komanda.html">Komanda</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Kontaktai</h4>
+        <ul>
+          <li><a href="tel:+37060798800">+370 607 98800</a></li>
+          <li>A. Mickevičiaus g. 41</li>
+          <li>Juodšiliai</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 Vet Pelėda. Visos teisės saugomos.</div>
+  </div>
+</footer>
+<!-- МОДАЛЬНЫЙ ВИДЖЕТ КОНСУЛЬТАЦИЙ -->
+<div class="vet-widget">
+  <button class="vet-widget-btn" id="openVetModal">
+    <i class="ph ph-chat-circle-text" style="font-size: 20px;"></i>
+    Konsultacija
+  </button>
+</div>
+
+<div class="vet-modal-overlay" id="vetModalOverlay">
+  <div class="vet-modal-box">
+    <button class="vet-modal-close" id="closeVetModal">
+      <i class="ph ph-x"></i>
+    </button>
+    
+    <h3 class="vet-modal-title">Nuotolinė pagalba</h3>
+    <p class="vet-modal-desc">
+      Pasirinkite konsultacijos tipą. Mūsų specialistai pasiruošę padėti jūsų augintiniui.
+    </p>
+
+    <div class="vet-modal-grid">
+      <a href="tel:+37060798800" class="vet-modal-option">
+        <i class="ph ph-phone-call"></i>
+        <div>
+          <strong>Skambutis</strong>
+          <span>Admin (Nemokama)</span>
+        </div>
+      </a>
+      <a href="konsultacijos.html" class="vet-modal-option">
+        <i class="ph ph-stethoscope"></i>
+        <div>
+          <strong>Konsultacija</strong>
+          <span>Gydytojas (20 €)</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function() {
+    var btn = document.getElementById('openVetModal');
+    var overlay = document.getElementById('vetModalOverlay');
+    var close = document.getElementById('closeVetModal');
+
+    if (btn && overlay) {
+      btn.onclick = function() { overlay.classList.add('active'); };
+      close.onclick = function() { overlay.classList.remove('active'); };
+      overlay.onclick = function(e) { if (e.target === overlay) overlay.classList.remove('active'); };
+    }
+  })();
+</script>
 </body>
 </html>

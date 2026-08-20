@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nuotolinė konsultacija – Vet Pelėda</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <link rel="stylesheet" href="style.css" />
+  
+  <style>
+    .consult-alert {
+      background-color: rgba(250, 235, 204, 0.5);
+      border-left: 4px solid #d6b677;
+      padding: 20px;
+      margin-bottom: 50px;
+      border-radius: 4px;
+      color: #7a633b;
+      font-size: 1.05rem;
+    }
+    .consult-alert strong {
+      color: #5c4a2c;
+    }
+    
+    .doctor-card {
+      background-color: var(--bg-white);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 24px 20px; 
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.02); 
+    }
+    .doctor-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 35px rgba(0,0,0,0.06); 
+      border-color: rgba(117, 131, 108, 0.4); 
+    }
+    
+    .avatar-wrapper {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      overflow: hidden; 
+      margin: 12px auto 16px auto;
+      border: 3px solid var(--bg-cream);
+      box-shadow: 0 4px 15px rgba(117, 131, 108, 0.15);
+    }
+    
+    .avatar-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center; 
+      transform: scale(1.5); 
+      transform-origin: 50% 18%; 
+    }
+
+    .doctor-card .doc-name {
+      font-family: var(--font-head);
+      font-size: 1.8rem;
+      margin: 0 0 12px;
+      color: var(--text-main);
+    }
+    .doctor-card .price {
+      font-size: 1.8rem; 
+      font-weight: 600;
+      color: var(--accent-sage);
+      margin: 16px 0;
+    }
+    .doctor-card p {
+      flex-grow: 1;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+
+    .admin-card {
+      flex-direction: row;
+      align-items: center;
+      text-align: left;
+      padding: 32px 40px;
+    }
+    .admin-card .admin-info {
+      flex: 1;
+    }
+    .admin-card .admin-action {
+      text-align: center;
+      padding-left: 40px;
+      margin-left: 20px;
+      border-left: 1px solid var(--border-color);
+    }
+    .admin-card p { margin-bottom: 0; }
+    
+    @media (max-width: 768px) {
+      .admin-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 32px 24px;
+      }
+      .admin-card .admin-action {
+        padding-left: 0;
+        margin-left: 0;
+        border-left: none;
+        border-top: 1px solid var(--border-color);
+        padding-top: 24px;
+        margin-top: 24px;
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo">Vet Pelėda</a>
+    <ul class="nav-links">
+      <li><a href="apie-mus.html">Apie mus</a></li>
+      <li class="dropdown">
+        <a href="paslaugos.html">
+          Paslaugos <i class="ph ph-caret-down" style="font-size: 14px;"></i>
+        </a>
+        <ul class="dropdown-menu">
+          <li><a href="konsultacijos.html" class="active">Nuotolinė kons.</a></li>
+        </ul>
+      </li>
+      <li><a href="komanda.html">Komanda</a></li>
+      <li><a href="kontaktai.html">Kontaktai</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section>
+  <div class="container">
+    
+    <div style="text-align: center; margin-bottom: 50px;">
+      <div class="label" style="justify-content: center;">Pagalba nuotoliu</div>
+      <h1 class="page-title">Nuotolinė konsultacija</h1>
+      <p class="subtitle" style="margin: 0 auto; max-width: 700px;">Profesionalus veterinarijos gydytojo patarimas paprastu telefono skambučiu. Greitas atsakymas į jums rūpimus klausimus neišeinant iš namų.</p>
+    </div>
+
+    <div class="consult-alert">
+      <strong>Svarbu!</strong> Nuotolinė konsultacija nepakeičia fizinio vizito klinikoje. Ne visais atvejais gydytojas gali nustatyti tikslią diagnozę per atstumą, tačiau mes padėsime įvertinti situaciją, patarsime dėl pirmosios pagalbos ir tolesnių veiksmų.
+    </div>
+
+    <div class="grid-2" style="align-items: start; margin-bottom: 80px;">
+      <div>
+        <h2 class="section-title" style="font-size: 2.2rem; margin-bottom: 24px;">Kada verta rinktis nuotolinę konsultaciją?</h2>
+        <ul style="color: var(--text-muted); font-size: 1.1rem; line-height: 1.8; padding-left: 20px;">
+          <li style="margin-bottom: 12px;"><strong style="color: var(--text-main);">Antroji nuomonė:</strong> Jei jau turite tyrimų atsakymus ir norite pasitarti su mūsų ekspertais.</li>
+          <li style="margin-bottom: 12px;"><strong style="color: var(--text-main);">Tolesnė priežiūra:</strong> Gydymo eigos aptarimas ar vaistų dozių koregavimas po jau įvykusio vizito.</li>
+          <li style="margin-bottom: 12px;"><strong style="color: var(--text-main);">Mityba ir elgsena:</strong> Patarimai dėl dietos, profilaktikos ar lengvų augintinio negalavimų.</li>
+          <li><strong style="color: var(--text-main);">Gyvūno streso mažinimas:</strong> Ypač jautriems augintiniams, kuriems kelionė į kliniką sukelia baimę, pirminis aptarimas telefonu yra puikus sprendimas.</li>
+        </ul>
+      </div>
+      
+      <div style="background-color: var(--bg-white); padding: 40px; border-radius: var(--radius); border: 1px solid var(--border-color);">
+        <h3 style="font-family: var(--font-head); font-size: 1.8rem; margin-bottom: 20px;">Kaip tai veikia?</h3>
+        <p style="color: var(--text-muted); line-height: 1.8; margin: 0;">
+          <strong>1.</strong> Žemiau pasirinkite gydytoją ir atlikite saugų 20 € apmokėjimą paspaudę mygtuką.<br>
+          <strong>2.</strong> Po sėkmingo apmokėjimo, mes su jumis susisieksime ir suderinsime patogų laiką.<br>
+          <strong>3.</strong> Konsultacija vyksta paprastu telefono skambučiu.<br>
+          <strong>4.</strong> Jei prireiks geriau įvertinti situaciją, gydytojas pokalbio metu paprašys jūsų atsiųsti geros kokybės gyvūno nuotraukas ar turimus tyrimų rezultatus (pvz., per „Telegram“).
+        </p>
+      </div>
+    </div>
+
+    <div style="margin-top: 60px;">
+      <div style="text-align: center; margin-bottom: 40px;">
+        <h2 class="section-title">Pasirinkite specialistą</h2>
+      </div>
+
+      <div class="grid-2" style="align-items: stretch;">
+        
+        <!-- Карточка Натальи -->
+        <div class="doctor-card">
+          <div class="label" style="justify-content: center;">Klinikos vadovė</div>
+          <div class="avatar-wrapper">
+            <img src="./photo_2026-08-03_14-29-09.jpg" alt="Natalja Komarovskaja">
+          </div>
+          <div class="doc-name">Natalja Komarovskaja</div>
+          <p>Vidaus ligų terapija, oftalmologija, reprodukcija. Išsamus atvejo aptarimas ir rekomendacijos telefonu.</p>
+          <div class="price">20 € <span style="font-size: 1rem; color: var(--text-muted); font-weight: 400;">/ iki 30 min.*</span></div>
+          <a href="https://buy.stripe.com/fZu7sNfFI5JWgQQeD2fjG04" target="_blank" rel="noopener noreferrer" class="btn-secondary" style="justify-content: center; background-color: var(--accent-sage); color: white; border: none;">Apmokėti ir užsakyti</a>
+        </div>
+
+        <!-- Карточка Карины -->
+        <div class="doctor-card">
+          <div class="label" style="justify-content: center;">Vyriausioji gydytoja</div>
+          <div class="avatar-wrapper">
+            <img src="./photo_2026-08-03_14-29-13.jpg" alt="Karina Liminovič">
+          </div>
+          <div class="doc-name">Karina Liminovič</div>
+          <p>Kardiologija, dermatologija, vidaus ligos. Atsakymai į klausimus ir tolesnio gydymo plano aptarimas.</p>
+          <div class="price">20 € <span style="font-size: 1rem; color: var(--text-muted); font-weight: 400;">/ iki 30 min.*</span></div>
+          <a href="https://buy.stripe.com/00wdRbctwegs0RS7aAfjG03" target="_blank" rel="noopener noreferrer" class="btn-secondary" style="justify-content: center; background-color: var(--accent-sage); color: white; border: none;">Apmokėti ir užsakyti</a>
+        </div>
+      </div>
+      
+      <!-- Сноска про дополнительное время -->
+      <div style="text-align: center; margin-top: 16px;">
+        <p style="font-size: 0.9rem; color: var(--text-muted);"><em>* Jei konsultacija trunka ilgiau nei 30 minučių, taikomas papildomas mokestis.</em></p>
+      </div>
+
+      <!-- Карточка Администратора -->
+      <div class="doctor-card admin-card" style="margin-top: 40px;">
+        <div class="admin-info">
+          <div class="label">Registracija ir informacija</div>
+          <div class="doc-name" style="font-size: 1.8rem;">Administratorė</div>
+          <p>Iki 15 min. trukmės pokalbis bendriems klausimams: vizito laiko derinimas, paslaugų kainos, pasiruošimas tyrimams. <strong>Svarbu:</strong> tai nėra medicininė konsultacija ir diagnozės telefonu nenustatomos.</p>
+        </div>
+        <div class="admin-action">
+          <div class="price" style="font-size: 1.5rem; margin-top: 0; color: var(--text-main);">Nemokamai</div>
+          <a href="tel:+37060798800" class="btn-primary" style="background-color: var(--bg-warm); width: 100%; justify-content: center; border: none;">Skambinti dabar</a>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div style="font-family: var(--font-head); font-size: 2rem; margin-bottom: 16px;">Vet Pelėda</div>
+        <p style="opacity: 0.6; max-width: 300px;">Profesionali veterinarijos klinika Juodšiliuose.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigacija</h4>
+        <ul>
+          <li><a href="apie-mus.html">Apie mus</a></li>
+          <li><a href="paslaugos.html">Paslaugos</a></li>
+          <li><a href="komanda.html">Komanda</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Kontaktai</h4>
+        <ul>
+          <li><a href="tel:+37060798800">+370 607 98800</a></li>
+          <li>A. Mickevičiaus g. 41</li>
+          <li>Juodšiliai</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 Vet Pelėda. Visos teisės saugomos.</div>
+  </div>
+</footer>
+
+</body>
+</html>
