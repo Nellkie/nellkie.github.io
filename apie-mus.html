@@ -15,6 +15,9 @@
 <nav>
   <div class="container nav-inner">
     <a href="index.html" class="nav-logo">Vet Pelėda</a>
+    <button class="nav-toggle" aria-label="Meniu">
+      <span></span><span></span><span></span>
+    </button>
     <ul class="nav-links">
   <li><a href="apie-mus.html">Apie mus</a></li>
   <li class="dropdown">
@@ -127,6 +130,15 @@
 
 <script>
   (function() {
+    var toggle = document.querySelector('.nav-toggle');
+    var nav = document.querySelector('nav');
+    if (toggle && nav) {
+      toggle.onclick = function() { nav.classList.toggle('nav-open'); };
+      nav.querySelectorAll('.nav-links a').forEach(function(link) {
+        link.onclick = function() { nav.classList.remove('nav-open'); };
+      });
+    }
+
     var btn = document.getElementById('openVetModal');
     var overlay = document.getElementById('vetModalOverlay');
     var close = document.getElementById('closeVetModal');
